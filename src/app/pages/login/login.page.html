@@ -1,0 +1,50 @@
+
+<ion-content>
+
+  <ion-icon [ngClass]="{'active': userService.logiran }"name="wifi-outline"></ion-icon>
+
+  <ion-grid>
+
+
+    <ion-row>
+      <ion-col>
+        <div>
+        
+        </div>
+      </ion-col>
+      <ion-col>
+        <div>
+          <ion-thumbnail slot="">
+            <ion-img class="logo" src="assets/Logo/Bite-logo.png"></ion-img>
+          </ion-thumbnail>
+
+
+
+          <ion-item>
+            <ion-label position="floating" >Username</ion-label>
+            <ion-input [(ngModel)]="username"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Password</ion-label>
+            <ion-input [(ngModel)]="password"></ion-input>
+          </ion-item>
+
+          <ion-button  (click)="login()">Login</ion-button>
+          <br>
+
+        </div>
+      </ion-col>
+      <ion-col>
+        <div>
+         
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+
+
+
+</ion-content>
