@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { User } from '../user/user.service';
+import { User, UserService } from '../user/user.service';
 import { IonSelect } from '@ionic/angular';
+
 
 @Injectable({
   providedIn: 'root'
@@ -14,19 +15,20 @@ logiran: boolean;
 
   url: string = "https://jupitermobiletest.jupiter-software.com:30081/jupitermobilex/gen/api/food"
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private userService: UserService) { }
 
-  registerRestoraunt(email: string, username: string, password: string) {
+  registerRestoraunt(companyName: string, status: boolean, userId: string) {
 
     let body = {
       "db": "Food",
       "queries": [
           {
-              "query": "spUsersAzur",
+              "query": "spCompanyAzur",
               "params": {
-                  "action": "usertocompany",
-                  "companyid": "1",
-                  "userid": "10"
+                  "action": "insert",
+                  "name": companyName,
+                  "status": status,
+                  "userid": userId
               }
           }
       ]

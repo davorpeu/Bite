@@ -20,15 +20,22 @@ export class RegisterPage implements OnInit {
 
   somethingClicked: boolean = true;
   hideOnSomethingClicked() {
-    this.somethingClicked= !this.somethingClicked;
-    }
+    this.somethingClicked = !this.somethingClicked;
+  }
 
   username: any
   email: any
   password: any
+  companyName: any
+  status: boolean = false
+  userId: any
 
   register() {
     this.userService.register(this.username, this.email, this.password)
+  }
+
+  registerRestoraunt(){
+    this.restorauntService.registerRestoraunt(this.companyName, this.status, this.userId)
   }
 
   private changeRoute(event: IonSelect) {
@@ -37,6 +44,13 @@ export class RegisterPage implements OnInit {
 
   }
 
-  
+ 
+
+  statusClicked() {
+    this.status = !this.status;
+  }
+
+
+
 
 }
