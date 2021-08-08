@@ -21,8 +21,8 @@
 
 
           <ion-item>
-            <ion-label position="floating" >Username</ion-label>
-            <ion-input [(ngModel)]="username"></ion-input>
+            <ion-label position="floating" >Email</ion-label>
+            <ion-input [(ngModel)]="email"></ion-input>
           </ion-item>
 
           <ion-item>
@@ -33,6 +33,20 @@
           <ion-button  (click)="login()">Login</ion-button>
           <br>
 
+          <ion-list>
+            <ion-radio-group allow-empty-selection >
+              
+             
+          
+              <ion-item>
+                <ion-label>Register</ion-label>
+                <ion-radio slot="end"  (click)="changeRoute($event)"></ion-radio>
+              </ion-item>
+            </ion-radio-group>
+          </ion-list>
+
+          
+
         </div>
       </ion-col>
       <ion-col>
@@ -41,9 +55,10 @@
         </div>
       </ion-col>
     </ion-row>
+    
   </ion-grid>
 
-
+ 
 
 
 

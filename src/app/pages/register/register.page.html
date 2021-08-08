@@ -1,0 +1,99 @@
+<ion-content>
+
+  <ion-icon [ngClass]="{'active': userService.logiran }" name="wifi-outline"></ion-icon>
+
+  <ion-grid>
+
+
+    <ion-row>
+      <ion-col>
+        <div>
+
+        </div>
+      </ion-col>
+      <ion-col>
+        <div>
+          <ion-thumbnail slot="">
+            <ion-img class="logo" src="assets/Logo/Bite-logo.png"></ion-img>
+          </ion-thumbnail>
+
+
+
+          <ion-item>
+            <ion-label position="floating">Username</ion-label>
+            <ion-input [(ngModel)]="username"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Email</ion-label>
+            <ion-input [(ngModel)]="email"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Password</ion-label>
+            <ion-input [(ngModel)]="password"></ion-input>
+          </ion-item>
+
+
+
+          <ion-item [hidden]="somethingClicked">
+            <ion-label position="floating">Restoraunt Name</ion-label>
+            <ion-input [(ngModel)]="companyName"></ion-input>
+          </ion-item>
+
+
+
+          <ion-radio-group allow-empty-selection [hidden]="somethingClicked">
+
+            <ion-item>
+              <ion-label>Status</ion-label>
+              <ion-radio slot="end" [(ngModel)]="status" (click)="status($event)"></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+
+
+
+
+          <ion-list>
+            <ion-radio-group allow-empty-selection value="restoraunt">
+
+
+
+              <ion-item>
+                <ion-label>Register as a restoraunt</ion-label>
+                <ion-radio slot="end" (click)="hideOnSomethingClicked()"></ion-radio>
+              </ion-item>
+            </ion-radio-group>
+          </ion-list>
+
+          <ion-button (click)="register()">Register</ion-button>
+          <br>
+
+          <ion-list>
+            <ion-radio-group allow-empty-selection value="register">
+
+
+
+              <ion-item>
+                <ion-label>Login</ion-label>
+                <ion-radio slot="end" (click)="changeRoute($event)"></ion-radio>
+              </ion-item>
+            </ion-radio-group>
+          </ion-list>
+
+        </div>
+      </ion-col>
+      <ion-col>
+        <div>
+
+        </div>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+
+
+
+
+
+</ion-content>
