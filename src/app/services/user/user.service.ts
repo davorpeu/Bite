@@ -20,14 +20,13 @@ export class UserService {
 
   logiran: boolean = false;
 
-  
+
 
   url: string = "https://jupitermobiletest.jupiter-software.com:30081/jupitermobilex/gen/api/food"
 
 
 
   login(username: string, password: string) {
-
     let body = {
       "db": "Food",
       "queries": [
@@ -51,7 +50,7 @@ export class UserService {
 
   }
 
-  register(email: string, username: string, password: string) {
+  register(username: string, email: string, password: string, newRestaurant: boolean, newRestaurantName: string) {
 
     let body = {
       "db": "Food",
@@ -67,13 +66,34 @@ export class UserService {
         }
       ]
     }
-    this.httpClient.post(this.url, body).subscribe((res: Array<User>) => {
+
+    this.httpClient.post(this.url, body).subscribe((res: Array<{
+      userid: number
+    }>) => {
       if (res.length > 0) {
         this.logiran = true;
         console.log(this.logiran)
         console.log(username)
-
-
+        if (newRestaurant) {
+          let bodyForNewRestaurant = {
+            "db": "Food",
+            "queries": [
+              {
+                "query": "spCompanyAzur",
+                "params": {
+                  "action": "insert",
+                  "name": newRestaurantName,
+                  "status": "1",
+                  "userid": res[0].userid
+                }
+              }
+            ]
+          }
+          this.httpClient.post(this.url, bodyForNewRestaurant).subscribe(res => {
+            console.log(res);
+          })
+        }
+        
       }
     });
 
@@ -98,14 +118,14 @@ export class UserService {
       }
     }
     this.httpClient.post(this.url, body).subscribe((res: Array<User>) => {
-        if (res.length > 0) {
-          this.logiran = true;
-          console.log(this.logiran)
+      if (res.length > 0) {
+        this.logiran = true;
+        console.log(this.logiran)
 
-        }
-      });
-
-    }
+      }
+    });
 
   }
+
+}
 

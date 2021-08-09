@@ -36,14 +36,14 @@
 
 
 
-          <ion-item [hidden]="somethingClicked">
+          <ion-item [hidden]="!somethingClicked">
             <ion-label position="floating">Restoraunt Name</ion-label>
             <ion-input [(ngModel)]="companyName"></ion-input>
           </ion-item>
 
 
 
-          <ion-radio-group allow-empty-selection [hidden]="somethingClicked">
+          <ion-radio-group allow-empty-selection [hidden]="!somethingClicked">
 
             <ion-item>
               <ion-label>Status</ion-label>
