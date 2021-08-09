@@ -17,31 +17,5 @@ logiran: boolean;
 
   constructor(private httpClient: HttpClient, private userService: UserService) { }
 
-  registerRestoraunt(companyName: string, status: number, userId: number) {
-
-    let body = {
-      "db": "Food",
-      "queries": [
-          {
-              "query": "spCompanyAzur",
-              "params": {
-                  "action": "insert",
-                  "name": companyName,
-                  "status": status,
-                  "userid": userId
-              }
-          }
-      ]
-  }
-    this.httpClient.post(this.url, body).subscribe((res: Array<User>) => {
-      if (res.length > 0){
-  this.logiran = true;
-  console.log(this.logiran)
-  console.log(companyName)
-
-
-      }
-    });
-
-  }
+  
 }
