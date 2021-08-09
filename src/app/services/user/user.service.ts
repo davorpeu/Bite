@@ -50,7 +50,7 @@ export class UserService {
 
   }
 
-  register(username: string, email: string, password: string, newRestaurant: boolean, newRestaurantName: string) {
+  register(username: string, email: string, password: string, newRestaurant: boolean, newRestaurantName: string, status: number) {
 
     let body = {
       "db": "Food",
@@ -83,7 +83,7 @@ export class UserService {
                 "params": {
                   "action": "insert",
                   "name": newRestaurantName,
-                  "status": "1",
+                  "status": status,
                   "userid": res[0].userid
                 }
               }

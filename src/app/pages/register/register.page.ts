@@ -37,7 +37,7 @@ export class RegisterPage implements OnInit {
 
 
   register() {
-    this.userService.register(this.username, this.email, this.password, this.somethingClicked, this.companyName)
+    this.userService.register(this.username, this.email, this.password, this.somethingClicked, this.companyName, this.status)
     
   }
   // registerUser() {
@@ -59,7 +59,9 @@ export class RegisterPage implements OnInit {
   statusClicked() {
 
 
+  
     this.result = !this.result;
+    this.status = this.result ? 1 : 0
 
     console.log(this.result)
     console.log(this.status)
