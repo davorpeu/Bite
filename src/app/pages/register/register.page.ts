@@ -34,8 +34,8 @@ export class RegisterPage implements OnInit {
     this.userService.register(this.username, this.email, this.password)
   }
 
-  registerRestoraunt(){
-    this.restorauntService.registerRestoraunt(this.companyName, this.status, this.userId)
+  registerRestoraunt(userService){
+    this.restorauntService.registerRestoraunt(this.companyName, this.status, userService.userId)
   }
 
   private changeRoute(event: IonSelect) {
