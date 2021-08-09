@@ -18,11 +18,16 @@ export class LoginPage implements OnInit {
     
 
   }
+//test za logout
+  // ionViewWillEnter() {
+  //   console.log('sdf');
+    
+  // }
 
   
-
-  email: any
-  password: any
+//ovo je login korisnika 
+  email: any = "davorpeu1@gmail.com"
+  password: any ="123"
 
 login(){
 this.userService.login(this.email, this.password)

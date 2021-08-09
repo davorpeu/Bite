@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MenuController } from '@ionic/angular';
+import { UserService } from './services/user/user.service';
 
 @Component({
   selector: 'app-root',
@@ -7,14 +8,27 @@ import { MenuController } from '@ionic/angular';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor(private menu: MenuController) {}
+  constructor(private menu: MenuController, private userService: UserService) {
+    // beheeviural subject
+    // loading: behaviourSubject<boolean> = 
+    this.loggedIn = this.userService.user != null;
+  }
 
 async openMenu(){
   await this.menu.open();
 }
 
+loggedIn: boolean = false;
+
+
+
 closeMenu(){
    this.menu.close();
 }
+
+logout(){
+  this.userService.logout();
+}
+
 
 }

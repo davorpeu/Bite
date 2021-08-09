@@ -1,14 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { User } from 'src/app/interfaces/user';
+import { Router } from '@angular/router';
 
-export interface User {
-  name: string;
-  companyId: number;
-  isAdmin: number;
-  companyName: string;
-  userId: number;
 
-}
 
 @Injectable({
   providedIn: 'root'
@@ -16,10 +11,10 @@ export interface User {
 
 export class UserService {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private router: Router) { }
 
-  logiran: boolean = false;
 
+  user: User = null;
 
 
   url: string = "https://jupitermobiletest.jupiter-software.com:30081/jupitermobilex/gen/api/food"
@@ -42,10 +37,10 @@ export class UserService {
     }
     this.httpClient.post(this.url, body).subscribe((res: Array<User>) => {
       if (res.length > 0) {
-        this.logiran = true;
-        console.log(this.logiran)
 
+        this.user = res[0];
       }
+      this.router.navigate(['/web/dashboard']), { replaceUrl: true }
     });
 
   }
@@ -71,8 +66,7 @@ export class UserService {
       userid: number
     }>) => {
       if (res.length > 0) {
-        this.logiran = true;
-        console.log(this.logiran)
+
         console.log(username)
         if (newRestaurant) {
           let bodyForNewRestaurant = {
@@ -93,7 +87,7 @@ export class UserService {
             console.log(res);
           })
         }
-        
+
       }
     });
 
@@ -119,13 +113,16 @@ export class UserService {
     }
     this.httpClient.post(this.url, body).subscribe((res: Array<User>) => {
       if (res.length > 0) {
-        this.logiran = true;
-        console.log(this.logiran)
+
 
       }
     });
 
   }
 
+  logout() {
+    
+    this.user = null;
+  }
 }
 
