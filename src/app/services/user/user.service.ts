@@ -71,6 +71,8 @@ export class UserService {
       if (res.length > 0) {
         this.logiran = true;
         console.log(this.logiran)
+        console.log(username)
+
 
       }
     });

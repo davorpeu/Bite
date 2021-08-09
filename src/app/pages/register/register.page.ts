@@ -18,6 +18,7 @@ export class RegisterPage implements OnInit {
 
 
 
+
   somethingClicked: boolean = true;
   hideOnSomethingClicked() {
     this.somethingClicked = !this.somethingClicked;
@@ -27,14 +28,25 @@ export class RegisterPage implements OnInit {
   email: any
   password: any
   companyName: any
-  status: boolean = false
+  result: boolean = false
+  status = this.result ? 1 : 0
   userId: any
+  
+
+
+
 
   register() {
+    this.registerUser()
+    if (this.somethingClicked == false) {
+      this.registerRestoraunt(this.userService)
+    }
+  }
+  registerUser() {
     this.userService.register(this.username, this.email, this.password)
   }
 
-  registerRestoraunt(userService){
+  registerRestoraunt(userService) {
     this.restorauntService.registerRestoraunt(this.companyName, this.status, userService.userId)
   }
 
@@ -47,7 +59,13 @@ export class RegisterPage implements OnInit {
  
 
   statusClicked() {
-    this.status = !this.status;
+
+
+    this.result = !this.result;
+
+    console.log(this.result)
+    console.log(this.status)
+
   }
 
 

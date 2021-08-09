@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User, UserService } from '../user/user.service';
-import { IonSelect } from '@ionic/angular';
+
 
 
 @Injectable({
@@ -17,7 +17,7 @@ logiran: boolean;
 
   constructor(private httpClient: HttpClient, private userService: UserService) { }
 
-  registerRestoraunt(companyName: string, status: boolean, userId: string) {
+  registerRestoraunt(companyName: string, status: number, userId: number) {
 
     let body = {
       "db": "Food",
@@ -37,6 +37,8 @@ logiran: boolean;
       if (res.length > 0){
   this.logiran = true;
   console.log(this.logiran)
+  console.log(companyName)
+
 
       }
     });
