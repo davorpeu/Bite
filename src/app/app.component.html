@@ -1,12 +1,15 @@
 <ion-app>
 
 
-  <ion-menu side="start" menuId="first" contentId="main-content">
+  <ion-menu side="end" menuId="first" contentId="main-content">
     <ion-header>
       <ion-toolbar color="primary">
         <ion-title>Start Menu</ion-title>
       </ion-toolbar>
+
+      
     </ion-header>
+
     <ion-content>
 
       <ion-list>
@@ -38,12 +41,14 @@
 
   <ion-router-outlet id="main-content"></ion-router-outlet>
 
-    <ion-fab (click)="openMenu()" [hidden]="" vertical="top" horizondal="end" slot="fixed">
-      <ion-fab-button>
-        <ion-icon name="menu-outline"></ion-icon>
-      </ion-fab-button>
-    </ion-fab>
-
+  <ion-fab  (click)="openMenu()" [hidden]=""  vertical="top" horizontal="end" slot="fixed" >
+    <ion-fab-button >
+      <ion-icon  name="menu-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  
+    
+    <div class="verticalLine"></div>
 
   
 

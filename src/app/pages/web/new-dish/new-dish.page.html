@@ -1,9 +1,61 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>newDish</ion-title>
-  </ion-toolbar>
+
+
+
 </ion-header>
 
+<ion-title class="title">Add New Meal</ion-title>
+
+
+
 <ion-content>
+
+    <ion-grid>
+
+
+        <ion-row>
+            <ion-col>
+
+            </ion-col>
+
+            <ion-col>
+                <div class="new-meal">
+
+
+
+
+                    <ion-item class="login">
+                        <ion-label position="floating">Meal Name</ion-label>
+                        <ion-input [(ngModel)]="mealName"></ion-input>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-label position="floating">Meal Description</ion-label>
+                        <ion-input [(ngModel)]="mealDescription"></ion-input>
+                    </ion-item>
+
+                    <ion-button class="new-meal-button" (click)="newMeal()">Save</ion-button>
+                    <ion-button class="cancel-meal-button" (click)="cancelMeal()">Cancel</ion-button>
+
+                    <br>
+
+                   
+
+
+
+                </div>
+            </ion-col>
+            <ion-col>
+                <ion-avatar>
+                    <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+                  </ion-avatar> 
+                  <ion-label>add Photo</ion-label>
+            </ion-col>
+        </ion-row>
+
+    </ion-grid>
+
+
+
 
 </ion-content>

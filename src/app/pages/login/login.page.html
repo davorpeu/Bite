@@ -1,26 +1,24 @@
 
 <ion-content>
 
-  <ion-icon [ngClass]="{'active': userService.logiran }"name="wifi-outline"></ion-icon>
+  <!-- <ion-icon [ngClass]="{'active': userService.logiran }"name="wifi-outline"></ion-icon> -->
 
   <ion-grid>
 
 
     <ion-row>
       <ion-col>
-        <div>
-        
-        </div>
+       
       </ion-col>
       <ion-col>
-        <div>
+        <div class="login">
           <ion-thumbnail slot="">
             <ion-img class="logo" src="assets/Logo/Bite-logo.png"></ion-img>
           </ion-thumbnail>
 
 
 
-          <ion-item>
+          <ion-item class="login">
             <ion-label position="floating" >Email</ion-label>
             <ion-input [(ngModel)]="email"></ion-input>
           </ion-item>
@@ -30,7 +28,7 @@
             <ion-input [(ngModel)]="password"></ion-input>
           </ion-item>
 
-          <ion-button  (click)="login()">Login</ion-button>
+          <ion-button class="login-button"  (click)="login()">Login</ion-button>
           <br>
 
           <ion-list>
