@@ -11,8 +11,12 @@ export class AppComponent {
   constructor(private menu: MenuController, private userService: UserService) {
     // beheeviural subject
     // loading: behaviourSubject<boolean> = 
-    this.loggedIn = this.userService.user != null;
+   
+    this.userService._user.subscribe(val =>{
+      this.loggedIn = val != null;
+    })
   }
+
 
 async openMenu(){
   await this.menu.open();
@@ -28,6 +32,7 @@ closeMenu(){
 
 logout(){
   this.userService.logout();
+  this.closeMenu()
 }
 
 

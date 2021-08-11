@@ -14,7 +14,7 @@ export class LoginPage implements OnInit {
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit() {
-
+//  enable for testing
       if(this.email   == "davorpeu1@gmail.com")
       this.login()
 

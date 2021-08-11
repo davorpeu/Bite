@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from 'src/app/interfaces/user';
 import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 
 
 
@@ -10,6 +11,13 @@ import { Router } from '@angular/router';
 })
 
 export class UserService {
+
+
+  
+
+
+  _user: BehaviorSubject<User> = new BehaviorSubject<User>(null);
+
 
   constructor(private httpClient: HttpClient, private router: Router) { }
 
@@ -38,9 +46,9 @@ export class UserService {
     this.httpClient.post(this.url, body).subscribe((res: Array<User>) => {
       if (res.length > 0) {
 
-        this.user = res[0];
+        this._user.next(res[0]);
       }
-      this.router.navigate(['/web/new-dish']), { replaceUrl: true }
+      this.router.navigate(['/web/dashboard']), { replaceUrl: true }
     });
 
   }
@@ -122,7 +130,12 @@ export class UserService {
 
   logout() {
     
-    this.user = null;
+    this._user.next(null);
   }
+
+  getUserCompany() {
+    return this._user.getValue().companyId;
+   }
+
 }
 

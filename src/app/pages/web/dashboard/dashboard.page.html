@@ -5,14 +5,15 @@
 <ion-content>
   <div class="verticalLine">
     <ion-img class="logo" src="assets/Logo/Bite-white-logo.png"></ion-img>
-
-    <div class="day"><ion-button class="dayButton" expand="full" >Mon</ion-button></div>
-    <div class="day"><ion-button class="dayButton" expand="full" >Tue</ion-button></div>
-    <div class="day"><ion-button class="dayButton" expand="full" >Wen</ion-button></div>
-    <div class="day"><ion-button class="dayButton" expand="full" >Thu</ion-button></div>
-    <div class="day"><ion-button class="dayButton" expand="full"  >Fri</ion-button></div>
-   
+<div class="days">
+    <div [ngClass]="{'day': true, 'active-day': day == currentDay}" *ngFor="let day of days" color="primary" (click)="changeDay(day)">
+      <span><h2>{{daysName[day-1]}}</h2></span>
+    </div>
+    </div>
   </div>
+   
+ 
+  
 
 
   <div class="content">
@@ -31,11 +32,12 @@
 
     <ion-grid>
       <ion-row>
-        <ion-col sizeLg="3" sizeMd="6" sizeSm="12" *ngFor="let item of polje">
+        
+        <ion-col sizeLg="3" sizeMd="6" sizeSm="12" *ngFor="let order of fetchedOrders">
           <ion-card>
-            <img [src]="item.img" />
+            <img src="assets/Logo/Bite-logo.png" />
             <ion-card-header>
-              <ion-card-subtitle>{{item.name}}</ion-card-subtitle>
+              <ion-card-subtitle>{{order.jelo}}</ion-card-subtitle>
               <ion-card-title>Madison, WI</ion-card-title>
             </ion-card-header>
             <ion-card-content>
