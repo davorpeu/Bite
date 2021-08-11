@@ -29,3 +29,13 @@
     border: solid 1px black;
     box-sizing: border-box;
 }
+
+.dayButton{
+  height: 17vh;
+  width: 22vh;
+  background-color:#09B44D;
+  --color-activated: #FFFFFF;
+}
+.searchBar{
+  margin-top: 10vh;
+}
