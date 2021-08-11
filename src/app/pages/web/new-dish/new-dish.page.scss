@@ -8,3 +8,27 @@
 
     padding-top: 100px;
 }
+
+.input-slika {
+    height: 200px;
+    width: 200px;
+    background-color: grey;
+    border-radius: 50%;
+}
+
+.image-upload {
+    border-radius:50%; 
+    background: #E9EAEB;
+    text-align: center; 
+    height: 250px; 
+    width: 250px;  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-weight: bolder;
+    margin: 0px auto;
+    // display:inline-block;
+    // line-height:250px;
+    outline: none;
+}

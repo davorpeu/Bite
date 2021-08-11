@@ -15,7 +15,8 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
 
-    
+      if(this.email   == "davorpeu1@gmail.com")
+      this.login()
 
   }
 //test za logout

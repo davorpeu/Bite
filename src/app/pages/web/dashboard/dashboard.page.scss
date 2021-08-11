@@ -1,3 +1,31 @@
-.week-list{
-    position: relative;
+// .week-list{
+//     position: relative;
+// }
+
+.verticalLine {
+    width:10%;
+    height:100vh;
+    background:#09B44D;
+    
+    margin-top: 0;
+    margin-left: 0;
+    float: left;
+  }
+.logo {
+    height: (100%/6);
+    border: solid 1px black;
+    box-sizing: border-box;
+}
+  .content {
+      width: 90%;
+      float: right;
+  }
+
+.day {
+    height: (100%/6);
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    border: solid 1px black;
+    box-sizing: border-box;
 }

@@ -40,7 +40,7 @@ export class UserService {
 
         this.user = res[0];
       }
-      this.router.navigate(['/web/dashboard']), { replaceUrl: true }
+      this.router.navigate(['/web/new-dish']), { replaceUrl: true }
     });
 
   }
