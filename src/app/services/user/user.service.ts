@@ -13,7 +13,7 @@ import { BehaviorSubject } from 'rxjs';
 export class UserService {
 
 
-  
+
 
 
   _user: BehaviorSubject<User> = new BehaviorSubject<User>(null);
@@ -48,7 +48,7 @@ export class UserService {
 
         this._user.next(res[0]);
       }
-      this.router.navigate(['/web/dashboard']), { replaceUrl: true }
+      this.router.navigate(['/web/new-dish']), { replaceUrl: true }
     });
 
   }
@@ -102,40 +102,16 @@ export class UserService {
   }
 
 
-  registerAdmin(email: string, username: string, password: string) {
 
-    let body = {
-      "db": "Food",
-      "queries": {
-        "db": "Food",
-        "queries": [
-          {
-            "query": "spUsersAzur",
-            "params": {
-              "action": "usertoadmins",
-              "userid": "10"
-            }
-          }
-        ]
-      }
-    }
-    this.httpClient.post(this.url, body).subscribe((res: Array<User>) => {
-      if (res.length > 0) {
-
-
-      }
-    });
-
-  }
 
   logout() {
-    
+
     this._user.next(null);
   }
 
   getUserCompany() {
     return this._user.getValue().companyId;
-   }
+  }
 
 }
 

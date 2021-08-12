@@ -5,25 +5,24 @@
 <ion-content>
   <div class="verticalLine">
     <ion-img class="logo" src="assets/Logo/Bite-white-logo.png"></ion-img>
-
-    <div class="day"><ion-button class="dayButton" expand="full" >Mon</ion-button></div>
-    <div class="day"><ion-button class="dayButton" expand="full" >Tue</ion-button></div>
-    <div class="day"><ion-button class="dayButton" expand="full" >Wen</ion-button></div>
-    <div class="day"><ion-button class="dayButton" expand="full" >Thu</ion-button></div>
-    <div class="day"><ion-button class="dayButton" expand="full"  >Fri</ion-button></div>
-   
+<div class="days">
+    <div [ngClass]="{'day': true, 'active-day': day == currentDay}" *ngFor="let day of days" color="primary" (click)="changeDay(day); getOrdersForDay()">
+      <span><h2>{{daysName[day-1]}}</h2></span>
+    </div>
+    </div>
   </div>
+   
+ 
+  
 
 
   <div class="content">
     <ion-grid class="searchBar">
       <ion-row>
         <ion-col>
-          <label for="title">Non Active Meals</label>
+        
         </ion-col>
-        <ion-col>
-          <label for="title">Active Meals</label>
-        </ion-col>
+
         <ion-col >
           <ion-searchbar  showCancelButton="focus"></ion-searchbar>
         </ion-col>
@@ -31,25 +30,40 @@
       </ion-row>
     </ion-grid>
 
-    <ion-grid>
-      <ion-row>
-        <ion-col sizeLg="3" sizeMd="6" sizeSm="12" *ngFor="let item of polje">
-          <ion-card>
-            <img [src]="item.img" />
-            <ion-card-header>
-              <ion-card-subtitle>{{item.name}}</ion-card-subtitle>
-              <ion-card-title>Madison, WI</ion-card-title>
-            </ion-card-header>
-            <ion-card-content>
-              Founded in 1829 on an isthmus between Lake Monona and Lake Mendota, Madison was named the capital of the
-              Wisconsin Territory in 1836.
-            </ion-card-content>
-          </ion-card>
+    <div class="menu">
+      <ion-grid style="margin: 0px 50px 50px;">
+        <ion-row>
+          <ion-col style="text-align: center;">
+            <h1>
+              Non active meals
+            </h1>
+            
+          </ion-col>
+          <ion-col>
+            <h1>
+              Curent meals
+            </h1>
+          </ion-col>
+        </ion-row>
+        <ion-row >
           
-        </ion-col>
-       
-      </ion-row>
-    </ion-grid>
-    <ion-button class="newMealButton"  (click)="newMeal()">Add New Meal </ion-button>
-  </div>
+
+          <ion-col  size-xl="6" size-lg="6"  size-md="6" size-sm="6" *ngFor="let order of getOrdersNotForDay()">
+            <span >
+              <app-order [order]="order"></app-order>
+            </span>
+          </ion-col>
+
+          <ion-col  size-xl="6" size-lg="6"  size-md="6" size-sm="6" *ngFor="let order of getOrdersForDay()">
+            <span >
+              <app-order [order]="order"></app-order>
+            </span>
+          </ion-col>
+
+        </ion-row>
+      </ion-grid>
+    </div>
+
+
+</div>
 </ion-content>

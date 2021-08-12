@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscriber } from 'rxjs';
+import { OrderComponent } from 'src/app/Component/Order/order/order.component';
 import { Order } from 'src/app/interfaces/order';
 import { RestaurantService } from 'src/app/services/restaurant/restaurant.service';
 
@@ -9,36 +10,45 @@ import { RestaurantService } from 'src/app/services/restaurant/restaurant.servic
   styleUrls: ['./dashboard.page.scss'],
 })
 export class DashboardPage implements OnInit {
+  static resorauntService: any;
 
   constructor(private resorauntService: RestaurantService) { }
 
-  fetchedOrders : Array<Order> = []
-
+  fetchedOrders: Array<Order> = []
+  
   ngOnInit() {
-    this.resorauntService._orders.subscribe((orders : Array<Order>) => {
-      this.fetchedOrders = orders
-      console.log(orders)
+    this.resorauntService._orders.subscribe((order: Array<Order>) => {
+      this.fetchedOrders = order
+     console.log(this.fetchedOrders)
+      
+      
     })
 
   }
   
-orders;
+
+  
 
 
-  daysName = ['MON','TUE','WEN','THU','FRI'];
-  days = [1,2,3,4,5];
-  daysNamesCro = ['Ponedeljak','Utorak','Srijeda','Četvrtak','Petak']
- currentDay = 1;
+  daysName = ['MON', 'TUE', 'WEN', 'THU', 'FRI'];
+  days = [1, 2, 3, 4, 5];
+  daysNamesCro = ['Ponedjeljak', 'Utorak', 'Srijeda', 'Četvrtak', 'Petak']
+  currentDay = 1;
 
- changeDay(day: number){
-   this.currentDay = day;
- }
+  changeDay(day: number) {
+    this.currentDay = day;
+    
+  }
 
- getOrdersForDay(){
-   if(this.orders != null)
-   return this.orders.filter(o => o.dan == this.daysNamesCro[this.currentDay - 1]);
-   return []
- }
+  getOrdersForDay() {
+    if (this.fetchedOrders != null)
+      return this.fetchedOrders.filter(o => o.dan == this.daysNamesCro[this.currentDay - 1]);
+      
+      
+      
+    return []
+    
+  }
 
 
 

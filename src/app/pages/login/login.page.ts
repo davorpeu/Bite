@@ -15,7 +15,10 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
 //  enable for testing
-      if(this.email   == "davorpeu1@gmail.com")
+      //if(this.email   == "davorpeu1@gmail.com")
+    //  this.login()
+
+        if(this.email   == "vedran.prpic1@gmail.com")
       this.login()
 
   }
@@ -27,8 +30,11 @@ export class LoginPage implements OnInit {
 
   
 //ovo je login korisnika 
-  email: any = "davorpeu1@gmail.com"
-  password: any ="123"
+  // email: any = "davorpeu1@gmail.com"
+  // password: any ="123"
+
+  email: any = "vedran.prpic1@gmail.com"
+  password: any ="lozinka"
 
 login(){
 this.userService.login(this.email, this.password)

@@ -32,6 +32,31 @@
                     <ion-item>
                         <ion-label position="floating">Meal Description</ion-label>
                         <ion-input [(ngModel)]="mealDescription"></ion-input>
+
+                    </ion-item>
+                    <ion-item>
+
+                        <ion-radio-group allow-empty-selection>
+                            <ion-item>
+                                <ion-label>Juha</ion-label>
+                                <ion-radio slot="end" (click)="soupClicked()"></ion-radio>
+                            </ion-item>
+                        </ion-radio-group>
+
+                        <ion-radio-group allow-empty-selection>
+                            <ion-item>
+                                <ion-label>Salata</ion-label>
+                                <ion-radio slot="end" (click)="saladClicked()"></ion-radio>
+                            </ion-item>
+
+                        </ion-radio-group>
+
+                        <ion-radio-group allow-empty-selection>
+                            <ion-item>
+                                <ion-label>Kruh</ion-label>
+                                <ion-radio slot="end" (click)="breadClicked()"></ion-radio>
+                            </ion-item>
+                        </ion-radio-group>
                     </ion-item>
 
                     <ion-button class="new-meal-button" (click)="newMeal()">Save</ion-button>
@@ -39,17 +64,18 @@
 
                     <br>
 
-                   
+
+
 
 
 
                 </div>
             </ion-col>
             <ion-col>
-                <input hidden type="file" accept="image/*" capture="camera"  id="fileInput" />
-              <label for="fileInput" icon-only ion-button>
-                <div class="image-upload">ADD PHOTO</div>
-              </label>
+                <input hidden type="file" accept="image/*" capture="camera" id="fileInput" />
+                <label for="fileInput" icon-only ion-button>
+                    <div class="image-upload">ADD PHOTO</div>
+                </label>
             </ion-col>
         </ion-row>
 

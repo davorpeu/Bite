@@ -19,9 +19,9 @@ export class RegisterPage implements OnInit {
 
 
 
-  somethingClicked: boolean = false;
-  hideOnSomethingClicked() {
-    this.somethingClicked = !this.somethingClicked;
+  registerRestoraunt: boolean = false;
+  showOnRestorauntClicked() {
+    this.registerRestoraunt = !this.registerRestoraunt;
   }
 
   username: any
@@ -37,7 +37,7 @@ export class RegisterPage implements OnInit {
 
 
   register() {
-    this.userService.register(this.username, this.email, this.password, this.somethingClicked, this.companyName, this.status)
+    this.userService.register(this.username, this.email, this.password, this.registerRestoraunt, this.companyName, this.status)
     
   }
   // registerUser() {

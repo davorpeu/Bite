@@ -19,6 +19,7 @@ export class RestaurantService {
 
 
   _orders: BehaviorSubject<Order[]> = new BehaviorSubject<Order[]>(null);
+
   initRestorauntForCompanyUser() {
 
     let body =
@@ -38,7 +39,7 @@ export class RestaurantService {
 
     return this.httpClient.post(this.url, body).toPromise().then((res: Array<Order>) => {
       this._orders.next(res)
-     // return true;
+      // return true;
     })
 
   }
@@ -48,8 +49,31 @@ export class RestaurantService {
 
   logiran: boolean;
 
+  addNewMeal(mealname: string, soupStatus: number, saladStatus: number, breadStatus: number, userId: number) {
+
+    let body = {
+      "db": "Food",
+      "queries": [
+        {
+          "query": "spDishAzur",
+          "params": {
+            "action": "insert",
+            "companyid": "9",
+            "name": mealname,
+            "soup": soupStatus,
+            "salad": saladStatus,
+            "bread": breadStatus,
+            "userid": this.userService._user.getValue().userId
+          }
+        }
+      ]
+    }
 
 
+    this.httpClient.post(this.url, body).subscribe
+
+
+  }
 
 
 
