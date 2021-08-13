@@ -20,12 +20,14 @@ export class MenuPage implements OnInit {
   }
 
   fetchedMenus: Array<Menu> = []
+  filteredFetchedMenus: Array<Menu> = []
+
 fetchedDishes: Array<Dish> = []
 
   ngOnInit() {
     this.resorauntService.menus.subscribe((menu: Array<Menu>) => {
-      this.fetchedMenus = menu    
-      console.log(this.fetchedMenus)
+      this.fetchedMenus = menu;
+      this.getMenusForDay();
     })
     this.resorauntService.dishes.subscribe((dish: Array<Dish>) => {
       this.fetchedDishes = dish  
@@ -40,13 +42,15 @@ fetchedDishes: Array<Dish> = []
 
   changeDay(day: number) {
     this.currentDay = day;
-    
+    this.getMenusForDay();
   }
 
   getMenusForDay() {
-    if (this.fetchedMenus != null)
-      return this.fetchedMenus.filter(o => o.day == this.currentDay);     
-    return []    
+    if (this.fetchedMenus != null) {
+      this.filteredFetchedMenus = this.fetchedMenus.filter(o => o.day == this.currentDay);
+      console.log(this.filteredFetchedMenus);
+      
+    }
   }
 
 

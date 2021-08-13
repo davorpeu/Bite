@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { User } from 'src/app/interfaces/user';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
+import { StorageService } from '../storage/storage.service';
 
 
 
@@ -19,11 +20,10 @@ export class UserService {
   _user: BehaviorSubject<User> = new BehaviorSubject<User>(null);
 
 
-  constructor(private httpClient: HttpClient, private router: Router) { }
+  constructor(private httpClient: HttpClient, private router: Router, private storageService: StorageService) { }
 
 
   user: User = null;
-
 
   url: string = "https://jupitermobiletest.jupiter-software.com:30081/jupitermobilex/gen/api/food"
 
@@ -47,7 +47,10 @@ export class UserService {
       if (res.length > 0) {
 
         this._user.next(res[0]);
+        this.storageService.setData("user",res[0]);
+
       }
+
       //change for testing
       this.router.navigate(['/web/dashboard']), { replaceUrl: true }
     });
@@ -105,9 +108,10 @@ export class UserService {
 
 
 
-  logout() {
+ async  logout() {
 
     this._user.next(null);
+   await this.storageService.removeData("user");
   }
 
   getUserId(){
