@@ -20,6 +20,8 @@ export class RestaurantService {
 
 
   _orders: BehaviorSubject<Order[]> = new BehaviorSubject<Order[]>(null);
+  _menus: BehaviorSubject<any[]> = new BehaviorSubject<any[]>(null);
+  _dishes: BehaviorSubject<any[]> = new BehaviorSubject<any[]>(null);
 
   initRestorauntForCompanyUser() {
 
@@ -32,15 +34,38 @@ export class RestaurantService {
           "params": {
             "action": "forCompany",
             "restoranid": this.userService.getUserCompany()
-          }
+          },
+          "tablename": "allOrders"
+        },
+        {
+          "query": "spDishMenu",
+          "params": {
+            "action": "dish",
+            "companyid": this.userService.getUserCompany()
+          },
+          "tablename": "allDishes"
+        },
+        {
+          "query": "spMenu",
+          "params": {
+            "action": "week",
+            "companyid": this.userService.getUserCompany()
+          },
+          "tablename": "allMenus"
         }
       ]
     }
 
 
-    return this.httpClient.post(this.url, body).toPromise().then((res: Array<Order>) => {
-      this._orders.next(res)
-      
+    return this.httpClient.post(this.url, body).toPromise().then((res: {
+      allOrders: Array<Order>,
+      allDishes: Array<any>,
+      allMenus: Array<any>
+    }) => {
+      this._orders.next(res.allOrders)
+      this._menus.next(res.allMenus)
+      this._dishes.next(res.allDishes)
+
     })
 
   }
@@ -50,7 +75,7 @@ export class RestaurantService {
 
   logiran: boolean;
 
-  addNewDish(dishName: string, soupStatus: number, saladStatus: number, breadStatus: number) {
+  addNewDish(dishName: string, soupStatus: number, saladStatus: number, breadStatus: number, description: string) {
 
     let dishBody = {
       "db": "Food",
@@ -59,12 +84,13 @@ export class RestaurantService {
           "query": "spDishAzur",
           "params": {
             "action": "insert",
-            "companyid":  this.userService.getUserCompany(),
+            "companyid": this.userService.getUserCompany(),
             "name": dishName,
             "soup": soupStatus,
             "salad": saladStatus,
             "bread": breadStatus,
-            "userid": this.userService.getUserId()
+            "userid": this.userService.getUserId(),
+            "description": description
           }
         }
       ]

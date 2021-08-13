@@ -4,9 +4,9 @@
 
 <ion-content>
   <div class="verticalLine">
-    <ion-img class="logo" src="assets/Logo/Bite-white-logo.png"></ion-img>
+    <ion-img class="logo" src="assets/Logo/logobijeli-011.png"></ion-img>
 <div class="days">
-    <div [ngClass]="{'day': true, 'active-day': day == currentDay}" *ngFor="let day of days" color="primary" (click)="changeDay(day); getOrdersForDay()">
+    <div [ngClass]="{'day': true, 'active-day': day == currentDay}" *ngFor="let day of days" color="primary" (click)="changeDay(day)">
       <span><h2>{{daysName[day-1]}}</h2></span>
     </div>
     </div>
@@ -48,15 +48,15 @@
         <ion-row >
           
 
-          <ion-col  size-xl="6" size-lg="6"  size-md="6" size-sm="6" *ngFor="let order of getOrdersNotForDay()">
+          <ion-col  size-xl="6" size-lg="6"  size-md="6" size-sm="6" *ngFor="let menu of getMenusForDay()">
             <span >
-              <app-order [order]="order"></app-order>
+              <!-- <app-order [order]="order"></app-order> -->{{menu.name}}
             </span>
           </ion-col>
 
-          <ion-col  size-xl="6" size-lg="6"  size-md="6" size-sm="6" *ngFor="let order of getOrdersForDay()">
+          <ion-col  size-xl="6" size-lg="6"  size-md="6" size-sm="6" *ngFor="let menu of getMenusForDay()">
             <span >
-              <app-order [order]="order"></app-order>
+              <!-- <app-order [order]="order"></app-order> -->{{menu.name}}
             </span>
           </ion-col>
 

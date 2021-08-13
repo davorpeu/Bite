@@ -12,20 +12,17 @@ import { DashboardPage } from '../dashboard/dashboard.page';
 })
 export class MenuPage implements OnInit {
 
-  constructor(private router: Router,private resorauntService: RestaurantService) { }
+  constructor(private router: Router,private resorauntService: RestaurantService) { 
 
-  fetchedOrders: Array<Order> = []
-  fetchedOtherOrders: Array<Order> = []
+
+  }
+
+  fetchedMenus: Array<any> = []
 
 
   ngOnInit() {
-    this.resorauntService._orders.subscribe((order: Array<Order>) => {
-      this.fetchedOrders = order
-      this.fetchedOtherOrders = order
-
-     console.log(this.fetchedOrders)
-      
-      
+    this.resorauntService._menus.subscribe((menus: Array<any>) => {
+      this.fetchedMenus = menus      
     })
   }
 
@@ -39,25 +36,21 @@ export class MenuPage implements OnInit {
     
   }
 
-  getOrdersForDay() {
-    if (this.fetchedOrders != null)
-      return this.fetchedOrders.filter(o => o.dan == this.daysNamesCro[this.currentDay - 1]);
-      
-      
-      
-    return []
-    
+  getMenusForDay() {
+    if (this.fetchedMenus != null)
+      return this.fetchedMenus.filter(o => o.day == this.currentDay);     
+    return []    
   }
 
-  getOrdersNotForDay() {
-    if (this.fetchedOtherOrders != null)
-      return this.fetchedOtherOrders.filter(i => i.dan != this.daysNamesCro[this.currentDay - 1]);
+  // getOrdersNotForDay() {
+  //   if (this.fetchedOtherOrders != null)
+  //     return this.fetchedOtherOrders.filter(i => i.dan != this.daysNamesCro[this.currentDay - 1]);
       
       
       
-    return []
+  //   return []
     
-  }
+  // }
 
   private newMeal(event:IonSelect){
   
