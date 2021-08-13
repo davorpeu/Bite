@@ -52,7 +52,7 @@ export class RestaurantService {
 
   addNewDish(dishName: string, soupStatus: number, saladStatus: number, breadStatus: number, userId: number) {
 
-    let body = {
+    let dishBody = {
       "db": "Food",
       "queries": [
         {
@@ -71,7 +71,7 @@ export class RestaurantService {
     }
 
 
-    this.httpClient.post(this.url, body).subscribe((res: Array<Order>) => {
+    this.httpClient.post(this.url, dishBody).subscribe((res: Array<Order>) => {
       if (res.length > 0) {
 
         this._orders.next(res);
