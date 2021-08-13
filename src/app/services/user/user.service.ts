@@ -109,6 +109,10 @@ export class UserService {
     this._user.next(null);
   }
 
+  getUserId(){
+    return this._user.getValue().userId;
+  }
+
   getUserCompany() {
     return this._user.getValue().companyId;
   }

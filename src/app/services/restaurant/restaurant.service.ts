@@ -50,7 +50,7 @@ export class RestaurantService {
 
   logiran: boolean;
 
-  addNewDish(dishName: string, soupStatus: number, saladStatus: number, breadStatus: number, userId: number) {
+  addNewDish(dishName: string, soupStatus: number, saladStatus: number, breadStatus: number) {
 
     let dishBody = {
       "db": "Food",
@@ -59,12 +59,12 @@ export class RestaurantService {
           "query": "spDishAzur",
           "params": {
             "action": "insert",
-            "companyid": "9",
+            "companyid":  this.userService.getUserCompany(),
             "name": dishName,
             "soup": soupStatus,
             "salad": saladStatus,
             "bread": breadStatus,
-            "userid": this.userService._user.getValue().userId
+            "userid": this.userService.getUserId()
           }
         }
       ]

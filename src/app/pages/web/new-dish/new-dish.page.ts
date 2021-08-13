@@ -46,7 +46,7 @@ export class NewDishPage implements OnInit {
 
 
   newDish() {
-    this.restorauntService.addNewDish(this.dishName, this.soupStatus, this.saladStatus, this.breadStatus, this.userId)
+    this.restorauntService.addNewDish(this.dishName, this.soupStatus, this.saladStatus, this.breadStatus)
 
   }
 
