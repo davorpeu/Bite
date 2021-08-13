@@ -26,14 +26,14 @@
 
                     <ion-item class="login">
                         <ion-label position="floating">Meal Name</ion-label>
-                        <ion-input [(ngModel)]="mealName"></ion-input>
+                        <ion-input [(ngModel)]="dishName"></ion-input>
                     </ion-item>
 
-                    <ion-item>
+                    <!-- <ion-item>
                         <ion-label position="floating">Meal Description</ion-label>
                         <ion-input [(ngModel)]="mealDescription"></ion-input>
 
-                    </ion-item>
+                    </ion-item> -->
                     <ion-item>
 
                         <ion-radio-group allow-empty-selection>
@@ -59,8 +59,8 @@
                         </ion-radio-group>
                     </ion-item>
 
-                    <ion-button class="new-meal-button" (click)="newMeal()">Save</ion-button>
-                    <ion-button class="cancel-meal-button" (click)="cancelMeal()">Cancel</ion-button>
+                    <ion-button class="new-dish-button" (click)="newDish()">Save</ion-button>
+                    <ion-button class="cancel-dish-button" (click)="cancelDish()">Cancel</ion-button>
 
                     <br>
 

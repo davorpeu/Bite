@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RestaurantService } from 'src/app/services/restaurant/restaurant.service';
 
 @Component({
   selector: 'app-new-dish',
@@ -7,11 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewDishPage implements OnInit {
 
-  constructor() { }
+  constructor(private restorauntService: RestaurantService) { }
 
   ngOnInit() {
   }
-
+  dishName: string;
+  userId: number;
   soup: boolean = false;
   salad: boolean = false;
   bread: boolean = false;
@@ -39,6 +41,16 @@ export class NewDishPage implements OnInit {
     this.bread = !this.bread;
     this.breadStatus = this.bread ? 1 : 0
 
+
+  }
+
+
+  newDish() {
+    this.restorauntService.addNewDish(this.dishName, this.soupStatus, this.saladStatus, this.breadStatus, this.userId)
+
+  }
+
+  cancelDish(){
 
   }
 

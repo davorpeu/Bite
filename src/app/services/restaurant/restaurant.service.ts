@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { UserService } from '../user/user.service';
 import { BehaviorSubject } from 'rxjs';
 import { Order } from 'src/app/interfaces/order';
+import { Router } from '@angular/router';
 
 
 
@@ -15,7 +16,7 @@ export class RestaurantService {
 
   url: string = "https://jupitermobiletest.jupiter-software.com:30081/jupitermobilex/gen/api/food"
 
-  constructor(private httpClient: HttpClient, private userService: UserService) { }
+  constructor(private httpClient: HttpClient, private userService: UserService, private router: Router) { }
 
 
   _orders: BehaviorSubject<Order[]> = new BehaviorSubject<Order[]>(null);
@@ -39,7 +40,7 @@ export class RestaurantService {
 
     return this.httpClient.post(this.url, body).toPromise().then((res: Array<Order>) => {
       this._orders.next(res)
-      // return true;
+      
     })
 
   }
@@ -49,7 +50,7 @@ export class RestaurantService {
 
   logiran: boolean;
 
-  addNewMeal(mealname: string, soupStatus: number, saladStatus: number, breadStatus: number, userId: number) {
+  addNewDish(dishName: string, soupStatus: number, saladStatus: number, breadStatus: number, userId: number) {
 
     let body = {
       "db": "Food",
@@ -59,7 +60,7 @@ export class RestaurantService {
           "params": {
             "action": "insert",
             "companyid": "9",
-            "name": mealname,
+            "name": dishName,
             "soup": soupStatus,
             "salad": saladStatus,
             "bread": breadStatus,
@@ -70,7 +71,13 @@ export class RestaurantService {
     }
 
 
-    this.httpClient.post(this.url, body).subscribe
+    this.httpClient.post(this.url, body).subscribe((res: Array<Order>) => {
+      if (res.length > 0) {
+
+        this._orders.next(res);
+      }
+      this.router.navigate(['/web/menu']), { replaceUrl: true }
+    });
 
 
   }
