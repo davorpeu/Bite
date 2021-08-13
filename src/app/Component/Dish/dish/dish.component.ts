@@ -10,7 +10,7 @@ export class DishComponent implements OnInit {
 
   constructor() { }
 
-  @Input() dish : Dish
+  @Input () dish;
 
   ngOnInit() {
     console.log(this.dish)

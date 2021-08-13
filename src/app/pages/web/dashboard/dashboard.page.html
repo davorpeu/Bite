@@ -5,26 +5,29 @@
 <ion-content>
   <div class="verticalLine">
     <ion-img class="logo" src="assets/Logo/Bite-white-logo.png"></ion-img>
-<div class="days">
-    <div [ngClass]="{'day': true, 'active-day': day == currentDay}" *ngFor="let day of days" color="primary" (click)="changeDay(day); getOrdersForDay()">
-      <span><h2>{{daysName[day-1]}}</h2></span>
-    </div>
+    <div class="days">
+      <div [ngClass]="{'day': true, 'active-day': day == currentDay}" *ngFor="let day of days" color="primary"
+        (click)="changeDay(day); getOrdersForDay()">
+        <span>
+          <h2>{{daysName[day-1]}}</h2>
+        </span>
+      </div>
     </div>
   </div>
-   
- 
-  
+
+
+
 
 
   <div class="content">
     <ion-grid class="searchBar">
       <ion-row>
         <ion-col>
-        
+
         </ion-col>
 
-        <ion-col >
-          <ion-searchbar  showCancelButton="focus"></ion-searchbar>
+        <ion-col>
+          <ion-searchbar showCancelButton="focus"></ion-searchbar>
         </ion-col>
 
       </ion-row>
@@ -39,14 +42,14 @@
             </h1>
           </ion-col>
         </ion-row>
-        <ion-row >
-          <ion-col  size-xl="3" size-lg="6"  size-md="6" size-sm="12" *ngFor="let order of getOrdersForDay()">
-            <span >
+        <ion-row>
+          <ion-col size-xl="3" size-lg="6" size-md="6" size-sm="12" *ngFor="let order of getOrdersForDay()">
+            <span>
               <app-order [order]="order"></app-order>
             </span>
           </ion-col>
         </ion-row>
       </ion-grid>
     </div>
-</div>
+  </div>
 </ion-content>

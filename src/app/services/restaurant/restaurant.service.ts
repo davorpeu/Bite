@@ -22,8 +22,8 @@ export class RestaurantService {
 
 
   _orders: BehaviorSubject<Order[]> = new BehaviorSubject<Order[]>(null);
-  _menus: BehaviorSubject<Menu[]> = new BehaviorSubject<Menu[]>(null);
-  _dishes: BehaviorSubject<Dish[]> = new BehaviorSubject<Dish[]>(null);
+  menus: BehaviorSubject<Menu[]> = new BehaviorSubject<Menu[]>(null);
+  dishes: BehaviorSubject<Dish[]> = new BehaviorSubject<Dish[]>(null);
 
   initRestorauntForCompanyUser() {
 
@@ -65,8 +65,8 @@ export class RestaurantService {
       allMenus: Array<Menu>
     }) => {
       this._orders.next(res.allOrders)
-      this._menus.next(res.allMenus)
-      this._dishes.next(res.allDishes)
+      this.menus.next(res.allMenus)
+      this.dishes.next(res.allDishes)
 
     })
 

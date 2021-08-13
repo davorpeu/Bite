@@ -23,11 +23,11 @@ export class MenuPage implements OnInit {
 fetchedDishes: Array<Dish> = []
 
   ngOnInit() {
-    this.resorauntService._menus.subscribe((menu: Array<Menu>) => {
-      this.fetchedMenus = menu      
+    this.resorauntService.menus.subscribe((menu: Array<Menu>) => {
+      this.fetchedMenus = menu    
       console.log(this.fetchedMenus)
     })
-    this.resorauntService._dishes.subscribe((dish: Array<Dish>) => {
+    this.resorauntService.dishes.subscribe((dish: Array<Dish>) => {
       this.fetchedDishes = dish  
       console.log(this.fetchedDishes)    
     })
