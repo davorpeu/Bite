@@ -50,13 +50,15 @@
 
           <ion-col  size-xl="6" size-lg="6"  size-md="6" size-sm="6" *ngFor="let menu of getMenusForDay()">
             <span >
-              <!-- <app-order [order]="order"></app-order> -->{{menu.name}}
+              <app-dish [dish]="dish"></app-dish>
+              <!-- {{menu.name}} -->
             </span>
           </ion-col>
 
           <ion-col  size-xl="6" size-lg="6"  size-md="6" size-sm="6" *ngFor="let menu of getMenusForDay()">
             <span >
-              <!-- <app-order [order]="order"></app-order> -->{{menu.name}}
+              <app-dish [dish]="dish"></app-dish>
+              <!-- {{menu.name}} -->
             </span>
           </ion-col>
 

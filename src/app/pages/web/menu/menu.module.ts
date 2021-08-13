@@ -7,7 +7,10 @@ import { IonicModule } from '@ionic/angular';
 import { MenuPageRoutingModule } from './menu-routing.module';
 
 import { MenuPage } from './menu.page';
-import { OrderComponent } from 'src/app/Component/Order/order/order.component';
+
+
+import { DishComponent } from 'src/app/Component/Dish/dish/dish.component';
+
 
 @NgModule({
   imports: [
@@ -16,6 +19,6 @@ import { OrderComponent } from 'src/app/Component/Order/order/order.component';
     IonicModule,
     MenuPageRoutingModule
   ],
-  declarations: [MenuPage,OrderComponent]
+  declarations: [MenuPage, DishComponent]
 })
 export class MenuPageModule {}

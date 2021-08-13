@@ -12,7 +12,7 @@ export class OrderComponent implements OnInit {
 @Input () order;
 
   ngOnInit() {
-    console.log(this.order)
+    
 
   }
 

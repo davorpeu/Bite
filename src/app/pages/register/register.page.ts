@@ -61,8 +61,7 @@ export class RegisterPage implements OnInit {
     this.result = !this.result;
     this.status = this.result ? 1 : 0
 
-    console.log(this.result)
-    console.log(this.status)
+   
 
   }
 

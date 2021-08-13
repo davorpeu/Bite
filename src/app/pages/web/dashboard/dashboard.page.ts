@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Subscriber } from 'rxjs';
-import { OrderComponent } from 'src/app/Component/Order/order/order.component';
 import { Order } from 'src/app/interfaces/order';
+
+
 import { RestaurantService } from 'src/app/services/restaurant/restaurant.service';
 
 @Component({
@@ -19,7 +19,7 @@ export class DashboardPage implements OnInit {
   ngOnInit() {
     this.resorauntService._orders.subscribe((order: Array<Order>) => {
       this.fetchedOrders = order
-     console.log(this.fetchedOrders)
+     
       
       
     })

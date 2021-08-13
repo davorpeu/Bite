@@ -48,7 +48,8 @@ export class UserService {
 
         this._user.next(res[0]);
       }
-      this.router.navigate(['/web/new-dish']), { replaceUrl: true }
+      //change for testing
+      this.router.navigate(['/web/dashboard']), { replaceUrl: true }
     });
 
   }
@@ -75,7 +76,7 @@ export class UserService {
     }>) => {
       if (res.length > 0) {
 
-        console.log(username)
+       
         if (newRestaurant) {
           let bodyForNewRestaurant = {
             "db": "Food",
@@ -92,7 +93,7 @@ export class UserService {
             ]
           }
           this.httpClient.post(this.url, bodyForNewRestaurant).subscribe(res => {
-            console.log(res);
+            
           })
         }
 

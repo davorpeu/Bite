@@ -4,6 +4,8 @@ import { UserService } from '../user/user.service';
 import { BehaviorSubject } from 'rxjs';
 import { Order } from 'src/app/interfaces/order';
 import { Router } from '@angular/router';
+import { Dish } from 'src/app/interfaces/dish';
+import { Menu } from 'src/app/interfaces/menu';
 
 
 
@@ -20,8 +22,8 @@ export class RestaurantService {
 
 
   _orders: BehaviorSubject<Order[]> = new BehaviorSubject<Order[]>(null);
-  _menus: BehaviorSubject<any[]> = new BehaviorSubject<any[]>(null);
-  _dishes: BehaviorSubject<any[]> = new BehaviorSubject<any[]>(null);
+  _menus: BehaviorSubject<Menu[]> = new BehaviorSubject<Menu[]>(null);
+  _dishes: BehaviorSubject<Dish[]> = new BehaviorSubject<Dish[]>(null);
 
   initRestorauntForCompanyUser() {
 
@@ -59,8 +61,8 @@ export class RestaurantService {
 
     return this.httpClient.post(this.url, body).toPromise().then((res: {
       allOrders: Array<Order>,
-      allDishes: Array<any>,
-      allMenus: Array<any>
+      allDishes: Array<Dish>,
+      allMenus: Array<Menu>
     }) => {
       this._orders.next(res.allOrders)
       this._menus.next(res.allMenus)

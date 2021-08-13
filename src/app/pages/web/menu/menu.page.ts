@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IonSelect } from '@ionic/angular';
-import { Order } from 'src/app/interfaces/order';
+import { Dish } from 'src/app/interfaces/dish';
+import { Menu } from 'src/app/interfaces/menu';
 import { RestaurantService } from 'src/app/services/restaurant/restaurant.service';
-import { DashboardPage } from '../dashboard/dashboard.page';
+
 
 @Component({
   selector: 'app-menu',
@@ -11,18 +12,24 @@ import { DashboardPage } from '../dashboard/dashboard.page';
   styleUrls: ['./menu.page.scss'],
 })
 export class MenuPage implements OnInit {
+  static restorauntService: any
 
   constructor(private router: Router,private resorauntService: RestaurantService) { 
 
 
   }
 
-  fetchedMenus: Array<any> = []
-
+  fetchedMenus: Array<Menu> = []
+fetchedDishes: Array<Dish> = []
 
   ngOnInit() {
-    this.resorauntService._menus.subscribe((menus: Array<any>) => {
-      this.fetchedMenus = menus      
+    this.resorauntService._menus.subscribe((menu: Array<Menu>) => {
+      this.fetchedMenus = menu      
+      console.log(this.fetchedMenus)
+    })
+    this.resorauntService._dishes.subscribe((dish: Array<Dish>) => {
+      this.fetchedDishes = dish  
+      console.log(this.fetchedDishes)    
     })
   }
 
@@ -42,15 +49,7 @@ export class MenuPage implements OnInit {
     return []    
   }
 
-  // getOrdersNotForDay() {
-  //   if (this.fetchedOtherOrders != null)
-  //     return this.fetchedOtherOrders.filter(i => i.dan != this.daysNamesCro[this.currentDay - 1]);
-      
-      
-      
-  //   return []
-    
-  // }
+
 
   private newMeal(event:IonSelect){
   
