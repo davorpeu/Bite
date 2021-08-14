@@ -14,7 +14,7 @@ import { RestaurantService } from 'src/app/services/restaurant/restaurant.servic
 export class MenuPage implements OnInit {
   static restorauntService: any
 
-  constructor(private router: Router,private resorauntService: RestaurantService) { 
+  constructor(private router: Router,private restaurantService: RestaurantService) { 
 
 
   }
@@ -25,11 +25,11 @@ export class MenuPage implements OnInit {
 fetchedDishes: Array<Dish> = []
 
   ngOnInit() {
-    this.resorauntService.menus.subscribe((menu: Array<Menu>) => {
+    this.restaurantService.menus.subscribe((menu: Array<Menu>) => {
       this.fetchedMenus = menu;
       this.getMenusForDay();
     })
-    this.resorauntService.dishes.subscribe((dish: Array<Dish>) => {
+    this.restaurantService.dishes.subscribe((dish: Array<Dish>) => {
       this.fetchedDishes = dish  
       console.log(this.fetchedDishes)    
     })
@@ -53,13 +53,19 @@ fetchedDishes: Array<Dish> = []
     }
   }
 
-
-
-  private newMeal(event:IonSelect){
-  
-    this.router.navigate(['/new-dish']);
-  
-  }
+addToMenu(){
+ // this.restaurantService.onDishClicked(clickedDish: Dish)
 
 }
+
+removeFromMenu(){
+
+ // this.restaurantService.onDishFromMenuClicked(clickedDish)
+
+
+}
+  
+
+}
+
 

@@ -15,6 +15,17 @@ import { Menu } from 'src/app/interfaces/menu';
 })
 export class RestaurantService {
 
+  
+
+  onDishFromMenuClicked(clickedDish: Dish) {
+    
+   
+  }
+
+  onDishClicked(clickedDish: any) {
+    throw new Error('Method not implemented.');
+  }
+
 
   url: string = "https://jupitermobiletest.jupiter-software.com:30081/jupitermobilex/gen/api/food"
 
@@ -77,7 +88,7 @@ export class RestaurantService {
 
   logiran: boolean;
 
-  addNewDish(dishName: string, soupStatus: number, saladStatus: number, breadStatus: number, description: string) {
+  addNewDish(dishName: string, soupStatus: number, saladStatus: number, breadStatus: number, dishDescription: string) {
 
     let dishBody = {
       "db": "Food",
@@ -92,7 +103,7 @@ export class RestaurantService {
             "salad": saladStatus,
             "bread": breadStatus,
             "userid": this.userService.getUserId(),
-            "description": description
+            "description": dishDescription
           }
         }
       ]
@@ -110,8 +121,49 @@ export class RestaurantService {
 
   }
 
+  insertDishInMenu(day: number, dishId: number) {
+    
+    let body = {
+      "db": "Food",
+      "queries": [
+        {
+          "query": "spMenuAzur",
+          "params": {
+            "action": "insert",
+            "dishid": dishId,
+            "day": day +1,
+            "userid": this.userService._user.value.userId
+          }
+        }
+      ]
+    }
+    this.httpClient.post(this.url, body)
+      .subscribe((response: any) => {
+        console.log(`Inserted dish into menu -> ${response}`)
+      })
+  }
 
-
+  removeDishFromMenu(day: number, dishId: number) {
+    
+    let body = {
+      "db": "Food",
+      "queries": [
+          {
+              "query": "spMenuAzur",
+              "params": {
+                  "action": "delete",
+                  "dishid": dishId,
+                  "day": day+ 1,
+                  "userid": this.userService._user.value.userId
+              }
+          }
+      ]
+  }
+    this.httpClient.post(this.url, body)
+      .subscribe((response: any) => {
+        console.log(`Deleted dish from menu -> ${response}`)
+      })
+  }
 
 
 }
