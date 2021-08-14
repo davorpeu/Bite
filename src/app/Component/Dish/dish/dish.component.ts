@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Dish } from 'src/app/interfaces/dish';
 
 @Component({
@@ -7,13 +7,19 @@ import { Dish } from 'src/app/interfaces/dish';
   styleUrls: ['./dish.component.scss'],
 })
 export class DishComponent implements OnInit {
+  
 
   constructor() { }
 
-  @Input () dish;
+  @Input () dish : Dish;
+  @Output ()  clickEmitter:  EventEmitter<Dish> = new EventEmitter();
 
   ngOnInit() {
     console.log(this.dish)
+  }
+
+  addToMenu(){
+    this.clickEmitter.emit(this.dish)
   }
 
 }

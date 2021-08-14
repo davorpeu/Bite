@@ -52,10 +52,10 @@
         <ion-row>
           <ion-row class="split left">
 
-            <ion-col size-xl="6" size-lg="6" size-md="6" size-sm="12" *ngFor="let dish of fetchedMenus" (click)="addToMenu()" >
+            <ion-col size-xl="6" size-lg="6" size-md="12" size-sm="12" *ngFor="let dish of fetchedDishes"  >
               <span>
                 <div>
-                  <app-dish [dish]="dish"></app-dish>
+                  <app-dish  [dish]="dish" (click)="addToMenu($event)"></app-dish>
                 </div>
               </span>
             </ion-col>
@@ -63,10 +63,10 @@
 
 
           <ion-row class="split right">
-            <ion-col size-xl="6" size-lg="6" size-md="6" size-sm="12" *ngFor="let dish of filteredFetchedMenus" (click)="removeFromMenu()">
+            <ion-col size-xl="6" size-lg="6" size-md="12" size-sm="12" *ngFor="let menu of filteredFetchedMenus" (click)="removeFromMenu()">
               <span>
                 <div>
-                  <app-dish [dish]="dish"></app-dish>
+                  <app-menu-comp [menu]="menu"></app-menu-comp>
                 </div>
                 <!-- {{menu.name}} -->
               </span>
