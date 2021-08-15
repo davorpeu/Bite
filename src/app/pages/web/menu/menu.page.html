@@ -63,10 +63,10 @@
 
 
           <ion-row class="split right">
-            <ion-col size-xl="6" size-lg="6" size-md="12" size-sm="12" *ngFor="let menu of filteredFetchedMenus" (click)="removeFromMenu()">
+            <ion-col size-xl="6" size-lg="6" size-md="12" size-sm="12" *ngFor="let menu of filteredFetchedMenus">
               <span>
                 <div>
-                  <app-menu-comp [menu]="menu"></app-menu-comp>
+                  <app-menu-comp [menu]="menu" (click)="removeFromMenu()"></app-menu-comp>
                 </div>
                 <!-- {{menu.name}} -->
               </span>

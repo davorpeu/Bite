@@ -14,9 +14,9 @@ import { Menu } from 'src/app/interfaces/menu';
   providedIn: 'root'
 })
 export class RestaurantService {
-  removeFromMenu(clickedDish: Dish) {
-    throw new Error('Method not implemented.');
-  }
+  
+
+
 
 
   
@@ -37,22 +37,9 @@ export class RestaurantService {
   menus: BehaviorSubject<Menu[]> = new BehaviorSubject<Menu[]>(null);
   dishes: BehaviorSubject<Dish[]> = new BehaviorSubject<Dish[]>(null);
 
-
+ 
   
-  public filteredFetchedMenus: Map<number, BehaviorSubject<Array<Dish>>> = new Map([
-    [0, new BehaviorSubject([])],
-    [1, new BehaviorSubject([])],
-    [2, new BehaviorSubject([])],
-    [3, new BehaviorSubject([])],
-    [4, new BehaviorSubject([])],
-  ])
-  public fetchedDishes: Map<number, BehaviorSubject<Array<Dish>>> = new Map([
-    [0, new BehaviorSubject([])],
-    [1, new BehaviorSubject([])],
-    [2, new BehaviorSubject([])],
-    [3, new BehaviorSubject([])],
-    [4, new BehaviorSubject([])],
-  ])
+  
  
   currentDay = 0;
 
@@ -114,37 +101,23 @@ export class RestaurantService {
 
 
    addToMenu(clickedDish: Dish) {
-     let newList = []
-     let dishesInMenu = this.filteredFetchedMenus.get(this.currentDay).value
-     this.fetchedDishes.get(this.currentDay).value.forEach((dish) => {
-       if (dish.DishId == clickedDish.DishId) {
-         dishesInMenu.push(dish)
-         this.insertDishInMenu(this.currentDay, dish.DishId)
-       }
-       else
-         newList.push(dish)
-
-    })
-     this.filteredFetchedMenus.get(this.currentDay).next(dishesInMenu)
-     this.fetchedDishes.get(this.currentDay).next(newList)
+      
+     
+     
+         this.insertDishInMenu(this.currentDay, clickedDish.DishId)
    }
 
-  // removeFromMenu(clickedDish: Dish) {
-  //   let newList = []
-  //   let dishesNotInMenu = this.dayDishesNotInMenu.get(this.currentDay).value
-  //   this.dayDishesInMenu.get(this.currentDay).value.forEach((dish) => {
-  //     if (dish.DishId == clickedDish.DishId && dish.Name == dish.Name && dish.Description == dish.Description) {
-  //       dishesNotInMenu.push(dish)
-  //       this.deleteDishFromMenu(this.currentDay, dish.DishId)
-  //     }
-  //     else
-  //       newList.push(dish)
 
-  //   })
-  //   this.dayDishesNotInMenu.get(this.currentDay).next(dishesNotInMenu)
-  //   this.dayDishesInMenu.get(this.currentDay).next(newList)
+   removeFromMenu(clickedDish: Dish) {
 
-  // }
+
+    this.removeDishFromMenu(this.currentDay, clickedDish.DishId)
+
+   }
+    
+  
+ 
+  
 
 
   addNewDish(dishName: string, soupStatus: number, saladStatus: number, breadStatus: number, dishDescription: string) {
@@ -180,7 +153,7 @@ export class RestaurantService {
 
   }
 
-  insertDishInMenu(day: number, dishId: number) {
+  insertDishInMenu(Currentday: number, dishId: number) {
 
     let body = {
       "db": "Food",
@@ -190,7 +163,7 @@ export class RestaurantService {
           "params": {
             "action": "insert",
             "dishid": dishId,
-            "day": day + 1,
+            "day": Currentday + 1,
             "userid": this.userService._user.value.userId
           }
         }
@@ -198,7 +171,7 @@ export class RestaurantService {
     }
     this.httpClient.post(this.url, body)
       .subscribe((response: any) => {
-        console.log(`Inserted dish into menu -> ${response}`)
+        console.log(`${response}`)
       })
   }
 
@@ -220,7 +193,7 @@ export class RestaurantService {
     }
     this.httpClient.post(this.url, body)
       .subscribe((response: any) => {
-        console.log(`Deleted dish from menu -> ${response}`)
+        console.log(`${response}`)
       })
   }
 
