@@ -1,5 +1,6 @@
 export interface Menu {
-    day: number,
-    companyId: number,
-    name: string
+    day: number, 
+    companyId: number, 
+    name : string 
+
 }

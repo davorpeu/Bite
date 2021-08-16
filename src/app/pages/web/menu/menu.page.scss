@@ -11,6 +11,9 @@
   margin-left: 0;
   float: left;
 }
+.grid{
+  margin: 0px 50px 50px;
+}
 .logo {
   height: (100%/6);
 
@@ -52,4 +55,29 @@
 }
 .searchBar {
   margin-top: 10vh;
+}
+
+/* Split the screen in half */
+.split {
+  height: 75vh;
+  width: 80vh;
+  position: fixed;
+  z-index: 1;
+  // top: 10;
+  overflow-x: scroll;
+  // padding-top: 20px;
+  padding-left: 0%;
+  
+}
+
+/* Control the left side */
+.left {
+  left: 5;
+  
+}
+
+/* Control the right side */
+.right {
+  right: 0;
+  
 }

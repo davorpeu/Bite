@@ -8,7 +8,7 @@ import { RestaurantService } from 'src/app/services/restaurant/restaurant.servic
 })
 export class NewDishPage implements OnInit {
 
-  constructor(private restorauntService: RestaurantService) { }
+  constructor(private restaurantService: RestaurantService) { }
 
   ngOnInit() {
   }
@@ -20,7 +20,7 @@ export class NewDishPage implements OnInit {
   soupStatus = this.soup ? 1 : 0
   saladStatus = this.salad ? 1 : 0
   breadStatus = this.bread ? 1 : 0
-  description: string = '';
+  dishDescription: string ;
 
 
   soupClicked() {
@@ -46,7 +46,7 @@ export class NewDishPage implements OnInit {
 
 
   newDish() {
-    this.restorauntService.addNewDish(this.dishName, this.soupStatus, this.saladStatus, this.breadStatus, this.description)
+    this.restaurantService.addNewDish(this.dishName, this.soupStatus, this.saladStatus, this.breadStatus, this.dishDescription)
 
   }
 

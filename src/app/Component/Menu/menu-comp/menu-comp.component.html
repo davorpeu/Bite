@@ -2,14 +2,13 @@
 
     
     
-      <ion-card (click)="addToMenu()" class="card" color="primary">
+      <ion-card (click)="removeFromMenu()">
         <img src="assets/Meal/Meal-logo.png" />
         <ion-card-header>
           <ion-card-subtitle></ion-card-subtitle>
-          <ion-card-title>{{dish.Name}}</ion-card-title>
+          <ion-card-title>{{menu.name}}</ion-card-title>
         </ion-card-header>
         <ion-card-content>
-          {{dish.Description}}
           
         </ion-card-content>
       </ion-card>

@@ -1,9 +1,9 @@
 <ion-app>
 
 
-  <ion-menu side="end" menuId="first" contentId="main-content">
-    <ion-header>
-      <ion-toolbar color="primary">
+  <ion-menu side="end" menuId="first" contentId="main-content" class="menu">
+    <ion-header >
+      <ion-toolbar  >
         <ion-title>Start Menu</ion-title>
       </ion-toolbar>
 
@@ -15,23 +15,26 @@
       <ion-list>
 
         <ion-item (click)="closeMenu()" [routerLink]="['/web/dashboard']" routerLinkActive="router-link-active">
-          <ion-icon name="archive" slot="start"></ion-icon>
-          <ion-label>Dashboard</ion-label>
+          <ion-icon name="cart-outline" slot="start"></ion-icon>
+          <ion-label>Orders Overview</ion-label>
         </ion-item>
 
         <ion-item (click)="closeMenu()" [routerLink]="['/web/new-dish']" routerLinkActive="router-link-active">
-          <ion-icon name="trash" slot="start"></ion-icon>
-          <ion-label>Food</ion-label>
+          
+          <ion-icon name="pizza-outline" slot="start"></ion-icon>
+          <ion-label>Create Dish</ion-label>
         </ion-item>
 
         <ion-item (click)="closeMenu()" [routerLink]="['/web/menu']" routerLinkActive="router-link-active">
-          <ion-icon name="warning" slot="start"></ion-icon>
+         
+          <ion-icon name="restaurant-outline" slot="start"></ion-icon>
           <ion-label>Menu</ion-label>
         </ion-item>
 
 
         <ion-item (click)="logout()" [routerLink]="['/login']" routerLinkActive="router-link-active">
-          <ion-icon name="warning" slot="start"></ion-icon>
+          <ion-icon name="log-out-outline" slot="start"></ion-icon>
+
           <ion-label>Logout</ion-label>
         </ion-item>
 

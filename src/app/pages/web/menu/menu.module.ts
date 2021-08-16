@@ -10,6 +10,7 @@ import { MenuPage } from './menu.page';
 
 
 import { DishComponent } from 'src/app/Component/Dish/dish/dish.component';
+import { MenuCompComponent } from 'src/app/Component/Menu/menu-comp/menu-comp.component';
 
 
 @NgModule({
@@ -19,6 +20,6 @@ import { DishComponent } from 'src/app/Component/Dish/dish/dish.component';
     IonicModule,
     MenuPageRoutingModule
   ],
-  declarations: [MenuPage, DishComponent]
+  declarations: [MenuPage, DishComponent, MenuCompComponent]
 })
 export class MenuPageModule {}

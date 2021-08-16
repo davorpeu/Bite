@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { IonSelect } from '@ionic/angular';
 import { Dish } from 'src/app/interfaces/dish';
 import { Menu } from 'src/app/interfaces/menu';
 import { RestaurantService } from 'src/app/services/restaurant/restaurant.service';
@@ -14,52 +13,67 @@ import { RestaurantService } from 'src/app/services/restaurant/restaurant.servic
 export class MenuPage implements OnInit {
   static restorauntService: any
 
-  constructor(private router: Router,private resorauntService: RestaurantService) { 
+  constructor(private router: Router, private restaurantService: RestaurantService) {
 
 
   }
 
-  fetchedMenus: Array<Menu> = []
-  filteredFetchedMenus: Array<Menu> = []
+ 
+  public fetchedMenus: Menu[] = []
+  public filteredFetchedMenus: Menu[] = []
+  public fetchedDishes: Dish[] = []
 
-fetchedDishes: Array<Dish> = []
+  currentDay = 1;
+  days = [1, 2, 3, 4, 5];
+  daysName = ['MON', 'TUE', 'WEN', 'THU', 'FRI'];
+  daysNamesCro = ['Ponedjeljak', 'Utorak', 'Srijeda', 'Četvrtak', 'Petak']
+ 
 
   ngOnInit() {
-    this.resorauntService.menus.subscribe((menu: Array<Menu>) => {
+    this.restaurantService.menus.subscribe((menu: Array<Menu>) => {
       this.fetchedMenus = menu;
       this.getMenusForDay();
     })
-    this.resorauntService.dishes.subscribe((dish: Array<Dish>) => {
-      this.fetchedDishes = dish  
-      console.log(this.fetchedDishes)    
+    this.restaurantService.dishes.subscribe((dish: Array<Dish>) => {
+      this.fetchedDishes = dish
+      
     })
+
+   
+
   }
 
-  daysName = ['MON', 'TUE', 'WEN', 'THU', 'FRI'];
-  days = [1, 2, 3, 4, 5];
-  daysNamesCro = ['Ponedjeljak', 'Utorak', 'Srijeda', 'Četvrtak', 'Petak']
-  currentDay = 1;
+  
 
   changeDay(day: number) {
     this.currentDay = day;
+    this.restaurantService.onDayChanged(day);
     this.getMenusForDay();
   }
 
   getMenusForDay() {
     if (this.fetchedMenus != null) {
       this.filteredFetchedMenus = this.fetchedMenus.filter(o => o.day == this.currentDay);
-      console.log(this.filteredFetchedMenus);
-      
+    
+
     }
   }
 
+   addToMenu(clickedDish: Dish){
+     this.restaurantService.addToMenu(clickedDish)
+    
+    }
+
+   removeFromMenu(clickedMenu: Menu){
+
+  this.restaurantService.removeFromMenu(clickedMenu)
 
 
-  private newMeal(event:IonSelect){
-  
-    this.router.navigate(['/new-dish']);
-  
-  }
+   }
+
+
+
 
 }
+
 

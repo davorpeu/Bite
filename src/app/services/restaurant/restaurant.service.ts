@@ -14,16 +14,37 @@ import { Menu } from 'src/app/interfaces/menu';
   providedIn: 'root'
 })
 export class RestaurantService {
+  
+
+
+
+
+  
+
+
+
+
+  constructor(private httpClient: HttpClient, private userService: UserService, private router: Router) { }
+
+
+ 
 
 
   url: string = "https://jupitermobiletest.jupiter-software.com:30081/jupitermobilex/gen/api/food"
-
-  constructor(private httpClient: HttpClient, private userService: UserService, private router: Router) { }
 
 
   _orders: BehaviorSubject<Order[]> = new BehaviorSubject<Order[]>(null);
   menus: BehaviorSubject<Menu[]> = new BehaviorSubject<Menu[]>(null);
   dishes: BehaviorSubject<Dish[]> = new BehaviorSubject<Dish[]>(null);
+
+ 
+  
+  
+ 
+  currentDay = 1;
+
+ 
+
 
   initRestorauntForCompanyUser() {
 
@@ -71,13 +92,36 @@ export class RestaurantService {
     })
 
   }
+  
   initRestorauntForCostumerUser() {
     return true;
   }
 
   logiran: boolean;
 
-  addNewDish(dishName: string, soupStatus: number, saladStatus: number, breadStatus: number, description: string) {
+
+   addToMenu(clickedDish: Dish) {
+      
+     
+     
+         this.insertDishInMenu(this.currentDay, clickedDish.DishId)
+   }
+
+
+   removeFromMenu(clickedM: Menu) {
+console.error("Method Not Implemeted my dude");
+
+
+   // this.removeDishFromMenu(this.currentDay, clickedMenu.)
+
+   }
+    
+  
+ 
+  
+
+
+  addNewDish(dishName: string, soupStatus: number, saladStatus: number, breadStatus: number, dishDescription: string) {
 
     let dishBody = {
       "db": "Food",
@@ -92,7 +136,7 @@ export class RestaurantService {
             "salad": saladStatus,
             "bread": breadStatus,
             "userid": this.userService.getUserId(),
-            "description": description
+            "description": dishDescription
           }
         }
       ]
@@ -110,8 +154,63 @@ export class RestaurantService {
 
   }
 
+  insertDishInMenu(Currentday: number, dishId: number) {
+
+    let body = {
+      "db": "Food",
+      "queries": [
+        {
+          "query": "spMenuAzur",
+          "params": {
+            "action": "insert",
+            "dishid": dishId,
+            "day": Currentday,
+            "userid": this.userService._user.value.userId
+          }
+        }
+      ]
+    }
+    this.httpClient.post(this.url, body)
+      .subscribe((response: any) => {
+        console.log(`${response}`)
+        this.initRestorauntForCompanyUser()
+      })
+  }
+
+  removeDishFromMenu(day: number, dishid: number) {
+
+    let body = {
+      "db": "Food",
+      "queries": [
+        {
+          "query": "spMenuAzur",
+          "params": {
+            "action": "delete",
+            "dishid": dishid,
+            "day": day,
+            "userid": this.userService._user.value.userId
+          }
+        }
+      ]
+    }
+    this.httpClient.post(this.url, body)
+      .subscribe((response: any) => {
+        console.log(`${response}`)
+      })
+  }
 
 
-
+  onDayChanged(day : number){
+    this.currentDay = day
+    this.initRestorauntForCompanyUser()
+  }
 
 }
+
+
+
+
+
+
+
+

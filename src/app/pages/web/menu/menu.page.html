@@ -5,39 +5,44 @@
 <ion-content>
   <div class="verticalLine">
     <ion-img class="logo" src="assets/Logo/logobijeli-011.png"></ion-img>
-<div class="days">
-    <div [ngClass]="{'day': true, 'active-day': day == currentDay}" *ngFor="let day of days" color="primary" (click)="changeDay(day)">
-      <span><h2>{{daysName[day-1]}}</h2></span>
-    </div>
+    <div class="days">
+      <div [ngClass]="{'day': true, 'active-day': day == currentDay}" *ngFor="let day of days" color="primary"
+        (click)="changeDay(day)">
+        <span>
+          <h2>{{daysName[day-1]}}</h2>
+        </span>
+      </div>
     </div>
   </div>
-   
- 
-  
+
+
+
 
 
   <div class="content">
     <ion-grid class="searchBar">
       <ion-row>
         <ion-col>
-        
+
         </ion-col>
 
-        <ion-col >
-          <ion-searchbar  showCancelButton="focus"></ion-searchbar>
+        <ion-col>
+          <ion-searchbar showCancelButton="focus" [(ngModel)]="searchText" placeholder="Enter text to search" 
+          autofocus></ion-searchbar>
         </ion-col>
 
       </ion-row>
     </ion-grid>
 
     <div class="menu">
-      <ion-grid style="margin: 0px 50px 50px;">
+      <ion-grid class="grid">
+        
         <ion-row>
           <ion-col style="text-align: center;">
             <h1>
               Non active meals
             </h1>
-            
+
           </ion-col>
           <ion-col>
             <h1>
@@ -45,41 +50,37 @@
             </h1>
           </ion-col>
         </ion-row>
-        <ion-row >
-          
 
-          <ion-col  size-xl="6" size-lg="6"  size-md="6" size-sm="6" *ngFor="let dish of fetchedMenus">
-            <span >
-              <app-dish [dish]="dish"></app-dish>
-            </span>
-          </ion-col>
+        <ion-row>
+          <ion-row class="split left">
 
-          <ion-col  size-xl="6" size-lg="6"  size-md="6" size-sm="6" *ngFor="let dish of filteredFetchedMenus">
-            <span >
-              <app-dish [dish]="dish"></app-dish>
-              <!-- {{menu.name}} -->
-            </span>
-          </ion-col>
+            <ion-col size-xl="" size-lg="6" size-md="12" size-sm="12" *ngFor="let dish of fetchedDishes"  >
+              <span>
+                <div>
+                  <app-dish  [dish]="dish" (click)="addToMenu($event)"></app-dish>
+                </div>
+              </span>
+            </ion-col>
+          </ion-row>
+
+
+          <ion-row class="split right">
+            <ion-col size-xl="" size-lg="6" size-md="12" size-sm="12" *ngFor="let menu of filteredFetchedMenus">
+              <span>
+                <div>
+                  <app-menu-comp [menu]="menu" (click)="removeFromMenu($event)"></app-menu-comp>
+                </div>
+                <!-- {{menu.name}} -->
+              </span>
+            </ion-col>
+          </ion-row>
 
         </ion-row>
       </ion-grid>
     </div>
-<!-- 
-    <ion-col>
-      <ion-row>
-        <ion-col>1</ion-col>
-        <ion-col>2</ion-col>
-        <ion-col>3</ion-col>
-      </ion-row>
-    </ion-col>
-    <ion-col>
-      <ion-row>
-        <ion-col>4</ion-col>
-        <ion-col>5</ion-col>
-        <ion-col>6</ion-col>
-      </ion-row>
-    </ion-col> -->
 
 
-</div>
+
+
+  </div>
 </ion-content>
