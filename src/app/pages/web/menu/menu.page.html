@@ -27,7 +27,8 @@
         </ion-col>
 
         <ion-col>
-          <ion-searchbar showCancelButton="focus"></ion-searchbar>
+          <ion-searchbar showCancelButton="focus" [(ngModel)]="searchText" placeholder="Enter text to search" 
+          autofocus></ion-searchbar>
         </ion-col>
 
       </ion-row>
@@ -35,6 +36,7 @@
 
     <div class="menu">
       <ion-grid class="grid">
+        
         <ion-row>
           <ion-col style="text-align: center;">
             <h1>
@@ -52,7 +54,7 @@
         <ion-row>
           <ion-row class="split left">
 
-            <ion-col size-xl="6" size-lg="6" size-md="12" size-sm="12" *ngFor="let dish of fetchedDishes"  >
+            <ion-col size-xl="" size-lg="6" size-md="12" size-sm="12" *ngFor="let dish of fetchedDishes"  >
               <span>
                 <div>
                   <app-dish  [dish]="dish" (click)="addToMenu($event)"></app-dish>
@@ -63,10 +65,10 @@
 
 
           <ion-row class="split right">
-            <ion-col size-xl="6" size-lg="6" size-md="12" size-sm="12" *ngFor="let menu of filteredFetchedMenus">
+            <ion-col size-xl="" size-lg="6" size-md="12" size-sm="12" *ngFor="let menu of filteredFetchedMenus">
               <span>
                 <div>
-                  <app-menu-comp [menu]="menu" (click)="removeFromMenu()"></app-menu-comp>
+                  <app-menu-comp [menu]="menu" (click)="removeFromMenu($event)"></app-menu-comp>
                 </div>
                 <!-- {{menu.name}} -->
               </span>

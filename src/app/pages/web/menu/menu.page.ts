@@ -64,9 +64,9 @@ export class MenuPage implements OnInit {
     
     }
 
-   removeFromMenu(clickedDish: Dish){
+   removeFromMenu(clickedMenu: Menu){
 
-  this.restaurantService.removeFromMenu(clickedDish)
+  this.restaurantService.removeFromMenu(clickedMenu)
 
 
    }

@@ -20,6 +20,6 @@ import { MenuCompComponent } from 'src/app/Component/Menu/menu-comp/menu-comp.co
     IonicModule,
     MenuPageRoutingModule
   ],
-  declarations: [MenuPage, DishComponent,MenuCompComponent]
+  declarations: [MenuPage, DishComponent, MenuCompComponent]
 })
 export class MenuPageModule {}

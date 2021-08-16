@@ -41,7 +41,7 @@ export class RestaurantService {
   
   
  
-  currentDay = 0;
+  currentDay = 1;
 
  
 
@@ -108,10 +108,11 @@ export class RestaurantService {
    }
 
 
-   removeFromMenu(clickedDish: Dish) {
+   removeFromMenu(clickedM: Menu) {
+console.error("Method Not Implemeted my dude");
 
 
-    this.removeDishFromMenu(this.currentDay, clickedDish.DishId)
+   // this.removeDishFromMenu(this.currentDay, clickedMenu.)
 
    }
     
@@ -163,7 +164,7 @@ export class RestaurantService {
           "params": {
             "action": "insert",
             "dishid": dishId,
-            "day": Currentday + 1,
+            "day": Currentday,
             "userid": this.userService._user.value.userId
           }
         }
@@ -172,10 +173,11 @@ export class RestaurantService {
     this.httpClient.post(this.url, body)
       .subscribe((response: any) => {
         console.log(`${response}`)
+        this.initRestorauntForCompanyUser()
       })
   }
 
-  removeDishFromMenu(day: number, dishId: number) {
+  removeDishFromMenu(day: number, dishid: number) {
 
     let body = {
       "db": "Food",
@@ -184,8 +186,8 @@ export class RestaurantService {
           "query": "spMenuAzur",
           "params": {
             "action": "delete",
-            "dishid": dishId,
-            "day": day + 1,
+            "dishid": dishid,
+            "day": day,
             "userid": this.userService._user.value.userId
           }
         }
@@ -200,6 +202,7 @@ export class RestaurantService {
 
   onDayChanged(day : number){
     this.currentDay = day
+    this.initRestorauntForCompanyUser()
   }
 
 }
