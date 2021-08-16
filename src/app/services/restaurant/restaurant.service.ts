@@ -6,6 +6,8 @@ import { Order } from 'src/app/interfaces/order';
 import { Router } from '@angular/router';
 import { Dish } from 'src/app/interfaces/dish';
 import { Menu } from 'src/app/interfaces/menu';
+import { map } from 'rxjs/operators';
+import { Restaurant } from 'src/app/interfaces/mobile/restaurant';
 
 
 
@@ -14,12 +16,15 @@ import { Menu } from 'src/app/interfaces/menu';
   providedIn: 'root'
 })
 export class RestaurantService {
-  
-
-
 
 
   
+
+
+
+
+
+
 
 
 
@@ -27,7 +32,7 @@ export class RestaurantService {
   constructor(private httpClient: HttpClient, private userService: UserService, private router: Router) { }
 
 
- 
+
 
 
   url: string = "https://jupitermobiletest.jupiter-software.com:30081/jupitermobilex/gen/api/food"
@@ -36,14 +41,14 @@ export class RestaurantService {
   _orders: BehaviorSubject<Order[]> = new BehaviorSubject<Order[]>(null);
   menus: BehaviorSubject<Menu[]> = new BehaviorSubject<Menu[]>(null);
   dishes: BehaviorSubject<Dish[]> = new BehaviorSubject<Dish[]>(null);
+  allRestoraunts: BehaviorSubject<Restaurant[]> = new BehaviorSubject<Restaurant[]>([]);
 
- 
-  
-  
- 
+
+
+
   currentDay = 1;
 
- 
+
 
 
   initRestorauntForCompanyUser() {
@@ -92,33 +97,74 @@ export class RestaurantService {
     })
 
   }
-  
+
   initRestorauntForCostumerUser() {
-    return true;
+
+    let body = {
+      "db": "Food",
+      "queries": [
+        {
+          "query": "spCompany",
+          "params": {
+            "action": "all"
+          },
+          tablename: 'allRestoraunts'
+        },
+        {
+          "query": "spMenu",
+          "params": {
+            "action": "all"
+          },
+          tablename: 'allMenus'
+        }
+      ]
+    }
+    return this.httpClient.post(this.url, body).pipe(map((val: {
+      allRestoraunts: Restaurant[];
+      allMenus: Menu[];
+    }) => {
+      console.log(val.allRestoraunts);
+      
+      if (val.allRestoraunts.length > 0) {
+        const x = val.allRestoraunts.map(r => ({
+          companyId: r.companyId,
+          name: r.name,
+          menus: [1, 2, 3, 4, 5].map(d => val.allMenus.filter(m => m.companyId === r.companyId && m.day === d))
+        }));
+        console.log(x)
+
+        // ovo hvata page kada želi dobiti podatke o svim restoranima
+        this.allRestoraunts.next(x);
+      }
+
+    }))
+
   }
 
   logiran: boolean;
 
 
-   addToMenu(clickedDish: Dish) {
-      
-     
-     
-         this.insertDishInMenu(this.currentDay, clickedDish.DishId)
-   }
+  addToMenu(clickedDish: Dish) {
 
 
-   removeFromMenu(clickedM: Menu) {
-console.error("Method Not Implemeted my dude");
+
+    this.insertDishInMenu(this.currentDay, clickedDish.DishId)
+  }
 
 
-   // this.removeDishFromMenu(this.currentDay, clickedMenu.)
+  removeFromMenu(clickedMenu: Menu) {
 
-   }
-    
-  
- 
-  
+
+    let dishId = this.dishes.getValue().find(val =>
+      val.Name == clickedMenu.name
+    ).DishId
+    this.removeDishFromMenu(this.currentDay, dishId)
+
+  }
+
+
+
+
 
 
   addNewDish(dishName: string, soupStatus: number, saladStatus: number, breadStatus: number, dishDescription: string) {
@@ -196,11 +242,12 @@ console.error("Method Not Implemeted my dude");
     this.httpClient.post(this.url, body)
       .subscribe((response: any) => {
         console.log(`${response}`)
+        this.initRestorauntForCompanyUser()
       })
   }
 
 
-  onDayChanged(day : number){
+  onDayChanged(day: number) {
     this.currentDay = day
     this.initRestorauntForCompanyUser()
   }

@@ -13,13 +13,15 @@ export class RestorauntResolverService implements Resolve<boolean> {
   constructor(private userService: UserService, private restorauntService: RestaurantService) { }
 
   async resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<any> {
-    if(this.userService.getUserCompany() !== 2){
+    if(!this.userService.isMobile){
       return await this.restorauntService.initRestorauntForCompanyUser();
       //restoran
 
     }
     else {
-      return this.restorauntService.initRestorauntForCostumerUser();
+      console.log('resolv');
+      
+      return await this.restorauntService.initRestorauntForCostumerUser().toPromise();
       //korisnik
     }
   }

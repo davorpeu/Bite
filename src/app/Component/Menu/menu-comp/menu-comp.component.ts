@@ -12,12 +12,12 @@ export class MenuCompComponent implements OnInit {
   constructor() { }
 
   @Input () menu;
-  @Output ()  click:  EventEmitter<Menu> = new EventEmitter();
+  @Output ()  click2:  EventEmitter<Menu> = new EventEmitter();
 
   ngOnInit() {}
 
  removeFromMenu(){
-    this.click.emit(this.menu)
+    this.click2.emit(this.menu)
   }
 
 }

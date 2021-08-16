@@ -28,6 +28,23 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'mobile',
+    children:[
+      {
+        path: 'tabs',
+        loadChildren: () => import('./pages/mobile/tabs/tabs.module').then( m => m.TabsPageModule)
+      },
+      {
+        path: 'restaurant',
+        loadChildren: () => import('./pages/mobile/restaurant/restaurant.module').then( m => m.RestaurantPageModule)
+      }
+    ],
+    resolve: {
+      restoraunt: RestorauntResolverService
+    },
+    canActivate: [AuthGuard]
+  },
+  {
     path: 'login',
     loadChildren: () => import('./pages/login/login.module').then(m => m.LoginPageModule)
   },
@@ -37,6 +54,11 @@ const routes: Routes = [
   },
  
   { path: '**', loadChildren: () => import('./pages/login/login.module').then(m => m.LoginPageModule) },
+  
+
+  
+  
+
 
 ];
 @NgModule({

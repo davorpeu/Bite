@@ -12,14 +12,14 @@ export class DishComponent implements OnInit {
   constructor() { }
 
   @Input () dish : Dish;
-  @Output ()  click:  EventEmitter<Dish> = new EventEmitter();
+  @Output ()  click2:  EventEmitter<Dish> = new EventEmitter();
 
   ngOnInit() {
     
   }
 
   addToMenu(){
-    this.click.emit(this.dish)
+    this.click2.emit(this.dish)
   }
 
 }

@@ -16,7 +16,6 @@ export class UserService {
 
 
 
-
   _user: BehaviorSubject<User> = new BehaviorSubject<User>(null);
 
 
@@ -26,6 +25,11 @@ export class UserService {
   user: User = null;
 
   url: string = "https://jupitermobiletest.jupiter-software.com:30081/jupitermobilex/gen/api/food"
+
+  isMobile: boolean;
+
+
+  
 
 
 
@@ -52,7 +56,7 @@ export class UserService {
       }
 
       //change for testing
-      this.router.navigate(['/web/dashboard']), { replaceUrl: true }
+      this.router.navigate(['/'+ (!this.isMobile ? 'web' : 'mobile/tabs')+'/dashboard']), { replaceUrl: true }
     });
 
   }
