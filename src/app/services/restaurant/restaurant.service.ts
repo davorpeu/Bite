@@ -17,6 +17,17 @@ import { Restaurant } from 'src/app/interfaces/mobile/restaurant';
 })
 export class RestaurantService {
 
+  selectedRestaurant?: Restaurant;
+
+ 
+    
+  onSelectRestaurant(restaurant: Restaurant): void {
+    this.selectedRestaurant = restaurant;
+    console.log(this.selectedRestaurant);
+    
+  }
+  
+
 
   
 
@@ -41,7 +52,7 @@ export class RestaurantService {
   _orders: BehaviorSubject<Order[]> = new BehaviorSubject<Order[]>(null);
   menus: BehaviorSubject<Menu[]> = new BehaviorSubject<Menu[]>(null);
   dishes: BehaviorSubject<Dish[]> = new BehaviorSubject<Dish[]>(null);
-  allRestoraunts: BehaviorSubject<Restaurant[]> = new BehaviorSubject<Restaurant[]>([]);
+  allRestaurants: BehaviorSubject<Restaurant[]> = new BehaviorSubject<Restaurant[]>([]);
 
 
 
@@ -51,7 +62,7 @@ export class RestaurantService {
 
 
 
-  initRestorauntForCompanyUser() {
+  initRestaurantForCompanyUser() {
 
     let body =
     {
@@ -98,7 +109,7 @@ export class RestaurantService {
 
   }
 
-  initRestorauntForCostumerUser() {
+  initRestaurantForCostumerUser() {
 
     let body = {
       "db": "Food",
@@ -108,7 +119,7 @@ export class RestaurantService {
           "params": {
             "action": "all"
           },
-          tablename: 'allRestoraunts'
+          tablename: 'allRestaurants'
         },
         {
           "query": "spMenu",
@@ -120,13 +131,13 @@ export class RestaurantService {
       ]
     }
     return this.httpClient.post(this.url, body).pipe(map((val: {
-      allRestoraunts: Restaurant[];
+      allRestaurants: Restaurant[];
       allMenus: Menu[];
     }) => {
-      console.log(val.allRestoraunts);
+      console.log(val.allRestaurants);
       
-      if (val.allRestoraunts.length > 0) {
-        const x = val.allRestoraunts.map(r => ({
+      if (val.allRestaurants.length > 0) {
+        const x = val.allRestaurants.map(r => ({
           companyId: r.companyId,
           name: r.name,
           menus: [1, 2, 3, 4, 5].map(d => val.allMenus.filter(m => m.companyId === r.companyId && m.day === d))
@@ -134,7 +145,7 @@ export class RestaurantService {
         console.log(x)
 
         // ovo hvata page kada želi dobiti podatke o svim restoranima
-        this.allRestoraunts.next(x);
+        this.allRestaurants.next(x);
       }
 
     }))
@@ -219,7 +230,7 @@ export class RestaurantService {
     this.httpClient.post(this.url, body)
       .subscribe((response: any) => {
         console.log(`${response}`)
-        this.initRestorauntForCompanyUser()
+        this.initRestaurantForCompanyUser()
       })
   }
 
@@ -242,14 +253,14 @@ export class RestaurantService {
     this.httpClient.post(this.url, body)
       .subscribe((response: any) => {
         console.log(`${response}`)
-        this.initRestorauntForCompanyUser()
+        this.initRestaurantForCompanyUser()
       })
   }
 
 
   onDayChanged(day: number) {
     this.currentDay = day
-    this.initRestorauntForCompanyUser()
+    this.initRestaurantForCompanyUser()
   }
 
 }

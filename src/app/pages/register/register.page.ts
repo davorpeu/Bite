@@ -11,7 +11,7 @@ import { UserService } from 'src/app/services/user/user.service';
 })
 export class RegisterPage implements OnInit {
 
-  constructor(private userService: UserService, private router: Router, private restorauntService: RestaurantService) { }
+  constructor(private userService: UserService, private router: Router, private restaurantService: RestaurantService) { }
 
   ngOnInit() {
   }
@@ -19,9 +19,9 @@ export class RegisterPage implements OnInit {
 
 
 
-  registerRestoraunt: boolean = false;
-  showOnRestorauntClicked() {
-    this.registerRestoraunt = !this.registerRestoraunt;
+  registerRestaurant: boolean = false;
+  showOnRestaurantClicked() {
+    this.registerRestaurant = !this.registerRestaurant;
   }
 
   username: any
@@ -37,7 +37,7 @@ export class RegisterPage implements OnInit {
 
 
   register() {
-    this.userService.register(this.username, this.email, this.password, this.registerRestoraunt, this.companyName, this.status)
+    this.userService.register(this.username, this.email, this.password, this.registerRestaurant, this.companyName, this.status)
     
   }
   // registerUser() {

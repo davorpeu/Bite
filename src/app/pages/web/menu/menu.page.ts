@@ -11,7 +11,7 @@ import { RestaurantService } from 'src/app/services/restaurant/restaurant.servic
   styleUrls: ['./menu.page.scss'],
 })
 export class MenuPage implements OnInit {
-  static restorauntService: any
+  static restaurantService: any
 
   constructor(private router: Router, private restaurantService: RestaurantService) {
 

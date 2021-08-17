@@ -8,20 +8,20 @@ import { UserService } from 'src/app/services/user/user.service';
 @Injectable({
   providedIn: 'root'
 })
-export class RestorauntResolverService implements Resolve<boolean> {
+export class RestaurantResolverService implements Resolve<boolean> {
 
-  constructor(private userService: UserService, private restorauntService: RestaurantService) { }
+  constructor(private userService: UserService, private restaurantService: RestaurantService) { }
 
   async resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<any> {
     if(!this.userService.isMobile){
-      return await this.restorauntService.initRestorauntForCompanyUser();
+      return await this.restaurantService.initRestaurantForCompanyUser();
       //restoran
 
     }
     else {
-      console.log('resolv');
+      console.log('resolve');
       
-      return await this.restorauntService.initRestorauntForCostumerUser().toPromise();
+      return await this.restaurantService.initRestaurantForCostumerUser().toPromise();
       //korisnik
     }
   }

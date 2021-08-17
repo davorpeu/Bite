@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guards/auth/auth.guard';
-import { RestorauntResolverService } from './resolvers/restoraunt/restoraunt-resolver.service';
+import { RestaurantResolverService } from './resolvers/restoraunt/restaurant-resolver.service';
+
 
 const routes: Routes = [
   { path: '', loadChildren: () => import('./pages/login/login.module').then(m => m.LoginPageModule) },
@@ -23,7 +24,7 @@ const routes: Routes = [
 
     ],
     resolve: {
-      restoraunt: RestorauntResolverService
+      restaurant: RestaurantResolverService
     },
     canActivate: [AuthGuard]
   },
@@ -40,7 +41,7 @@ const routes: Routes = [
       }
     ],
     resolve: {
-      restoraunt: RestorauntResolverService
+      restaurant: RestaurantResolverService
     },
     canActivate: [AuthGuard]
   },

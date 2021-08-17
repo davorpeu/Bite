@@ -36,14 +36,14 @@
 
 
 
-          <ion-item [hidden]="!registerRestoraunt">
-            <ion-label position="floating">Restoraunt Name</ion-label>
+          <ion-item [hidden]="!registerRestaurant">
+            <ion-label position="floating">Restaurant Name</ion-label>
             <ion-input [(ngModel)]="companyName"></ion-input>
           </ion-item>
 
 
 
-          <ion-radio-group allow-empty-selection [hidden]="!registerRestoraunt">
+          <ion-radio-group allow-empty-selection [hidden]="!registerRestaurant">
 
             <ion-item>
               <ion-label>Status</ion-label>
@@ -55,13 +55,13 @@
 
 
           <ion-list>
-            <ion-radio-group allow-empty-selection value="restoraunt">
+            <ion-radio-group allow-empty-selection value="restaurant">
 
 
 
               <ion-item>
-                <ion-label>Register as a restoraunt</ion-label>
-                <ion-radio slot="end" (click)="showOnRestorauntClicked()"></ion-radio>
+                <ion-label>Register as a restaurant</ion-label>
+                <ion-radio slot="end" (click)="showOnRestaurantClicked()"></ion-radio>
               </ion-item>
             </ion-radio-group>
           </ion-list>

@@ -1,9 +1,43 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>restaurant</ion-title>
+    <ion-title>{{selectedRestaurant.name | uppercase}} Meni</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
+  <div class="days">
+    <div [ngClass]="{'day': true, 'active-day': day == currentDay}" *ngFor="let day of days" color="primary"
+      (click)="changeDay(day)">
+      <span>
+        <h2>{{daysName[day-1]}}</h2>
+      </span>
+    </div>
+  </div>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-button>Mon</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button>Thu</ion-button>
+
+      </ion-col>
+      <ion-col>
+        <ion-button>Wen</ion-button>
+
+      </ion-col>
+      <ion-col>
+        <ion-button>Thu</ion-button>
+
+      </ion-col>
+      <ion-col>
+        <ion-button>Fri</ion-button>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
