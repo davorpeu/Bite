@@ -17,10 +17,12 @@ export class RestaurantPage implements OnInit {
   selectedRestaurant?: Restaurant;
 
   ngOnInit() {
-    this.route.queryParams.subscribe(params => {
-      console.log(params)
-    })
+    // this.route.queryParams.subscribe(params => {
+    //   console.log(params)
+    // })
 this.selectedRestaurant = this.restaurantService.selectedRestaurant
+
+this.restaurantService.getWeekMenuForSelectedRestaurant();
   }
 
   currentDay = 1;

@@ -7,18 +7,18 @@ import { Dish } from 'src/app/interfaces/dish';
   styleUrls: ['./dish.component.scss'],
 })
 export class DishComponent implements OnInit {
-  
+
 
   constructor() { }
 
-  @Input () dish : Dish;
-  @Output ()  click2:  EventEmitter<Dish> = new EventEmitter();
+  @Input() dish: Dish;
+  @Output() click2: EventEmitter<Dish> = new EventEmitter();
 
   ngOnInit() {
-    
+
   }
 
-  addToMenu(){
+  addToMenu() {
     this.click2.emit(this.dish)
   }
 

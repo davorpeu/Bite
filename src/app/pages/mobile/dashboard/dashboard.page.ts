@@ -16,12 +16,12 @@ export class DashboardPage implements OnInit {
   filteredRestaurants: Restaurant[];
   constructor(private restaurantService: RestaurantService) { }
 
-  @Output ()  click2:  EventEmitter<Restaurant> = new EventEmitter();
+  @Output() click2: EventEmitter<Restaurant> = new EventEmitter();
 
 
   ngOnInit() {
     this.restaurantService.allRestaurants.subscribe(value => {
-      
+
       if (value.length > 0) {
         this.allRestaurants = value;
         this.filteredRestaurants = value;
@@ -45,7 +45,7 @@ export class DashboardPage implements OnInit {
   search(event) {
     const query = event.target.value.toLowerCase();
     this.filteredRestaurants = !query ? [...this.allRestaurants] : this.allRestaurants.filter(r => r.name.toLowerCase().includes(query));
-// ... znači
+    // ... znači
   }
 
   getResto() {
@@ -58,14 +58,12 @@ export class DashboardPage implements OnInit {
 
   }
 
-  onSelect(restaurant: Restaurant){
+  onSelect(restaurant: Restaurant) {
 
     this.restaurantService.onSelectRestaurant(restaurant)
-  
-  
-     }
 
-  
-  
+
+  }
+
 
 }

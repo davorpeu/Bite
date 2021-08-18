@@ -263,6 +263,25 @@ export class RestaurantService {
     this.initRestaurantForCompanyUser()
   }
 
+  getWeekMenuForSelectedRestaurant() {
+    let body = {
+      "db": "Food",
+      "queries": [
+          {
+              "query": "spMenu",
+              "params": {
+                  "action": "week",
+                  "companyid": this.selectedRestaurant?.companyId
+              }
+          }
+      ]
+  }
+    this.httpClient.post(this.url, body)
+      .subscribe((response: any) => {
+        console.log(`${response}`)
+      })
+  }
+
 }
 
 

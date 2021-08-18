@@ -20,20 +20,6 @@
 
 
   <div class="content">
-    <!-- <ion-grid class="searchBar">
-      <ion-row>
-        <ion-col>
-
-        </ion-col>
-
-        <ion-col>
-          <ion-searchbar showCancelButton="focus" [(ngModel)]="searchText" placeholder="Enter text to search" autofocus></ion-searchbar>
-          
-        </ion-col>
-
-      </ion-row>
-    </ion-grid> -->
-
     <div class="menu">
       <ion-grid class="">
         <ion-row>
@@ -43,39 +29,26 @@
             </h1>
             <span>
               <div class="">
-                <app-dish *ngFor="let dish of fetchedDishes" [dish]="dish" (click2)="addToMenu($event)"></app-dish>
+                <app-dish *ngFor="let dish of fetchedDishes;let i = index" [dish]="dish" (click2)="addToMenu($event)">
+                </app-dish>
               </div>
             </span>
           </ion-col>
-
-
-<!-- ion-button stavi na element da dobije responzivnost -->
-          <ion-col  size-lg="6" size-md="6" size-sm="12">
+          <!-- ion-button stavi na element da dobije responzivnost -->
+          <ion-col size-lg="6" size-md="6" size-sm="12">
             <h1 style="text-align: center;">
               Curent meals
             </h1>
             <span>
               <div class="menuScroll">
-                <app-menu-comp *ngFor="let menu of filteredFetchedMenus" [menu]="menu" (click2)="removeFromMenu($event)"></app-menu-comp>
+                <app-menu-comp *ngFor="let menu of filteredFetchedMenus" [menu]="menu"
+                  (click2)="removeFromMenu($event)"></app-menu-comp>
               </div>
               <!-- {{menu.name}} -->
             </span>
           </ion-col>
-
         </ion-row>
-
-
-
-
-
-
-
-
       </ion-grid>
     </div>
-
-
-
-
   </div>
 </ion-content>
