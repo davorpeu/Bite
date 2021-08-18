@@ -5,7 +5,7 @@ export interface MenuDish {
     companyId: number; 
     name : string ;
     dishId: number;
-    inCart?: string;
+    inCart?: boolean;
 
 }
 
@@ -14,7 +14,7 @@ export interface MenuDish {
 export interface Restaurant {
     companyId: number;
     name: string;
-    menu?: MenuDish[][];
+    menus?: MenuDish[][];
     image?: string;
 
 }

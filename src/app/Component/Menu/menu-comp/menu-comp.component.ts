@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { Menu } from 'src/app/interfaces/menu';
+import { MenuDish } from 'src/app/interfaces/mobile/restaurant';
 
 
 @Component({
@@ -13,7 +14,8 @@ export class MenuCompComponent implements OnInit {
 
   @Input () menu;
   @Output ()  click2:  EventEmitter<Menu> = new EventEmitter();
-
+  @Input() dishSelected: MenuDish;
+  
   ngOnInit() {}
 
  removeFromMenu(){

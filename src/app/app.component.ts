@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuController, Platform } from '@ionic/angular';
+import { CartService } from './services/cart/cart.service';
 
 import { StorageService } from './services/storage/storage.service';
 import { UserService } from './services/user/user.service';
@@ -15,6 +16,7 @@ export class AppComponent {
   constructor(private menu: MenuController,
     private userService: UserService,
     private storageService: StorageService,
+    private cartService: CartService,
     private router: Router,
     private platform: Platform) {
 
@@ -35,10 +37,11 @@ export class AppComponent {
       this.userService._user.next(user)
       if (this.userService._user){
         if(this.isMobile){
+          this.storageService.getData(this.userService._user.getValue().userId+'cart').then(orders => this.cartService.orders.next(orders.value || []))
           this.router.navigate(['mobile/tabs/dashboard'], {replaceUrl: true})
         }
       }
-    })
+    });
     
   };
 

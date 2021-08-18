@@ -1,9 +1,10 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>cart</ion-title>
+    <ion-title class='ion-text-center'>Shopping Cart</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+<app-dish-card *ngFor='let order of order' [name]='order.name' [orderDay]='days[order.day -1]'> </app-dish-card>
 </ion-content>
+<ion-button></ion-button>

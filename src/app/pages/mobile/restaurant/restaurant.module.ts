@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { RestaurantPageRoutingModule } from './restaurant-routing.module';
 
 import { RestaurantPage } from './restaurant.page';
+import { MenuCompComponent } from 'src/app/Component/Menu/menu-comp/menu-comp.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { RestaurantPage } from './restaurant.page';
     IonicModule,
     RestaurantPageRoutingModule
   ],
-  declarations: [RestaurantPage]
+  declarations: [RestaurantPage, MenuCompComponent]
 })
 export class RestaurantPageModule {}

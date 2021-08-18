@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 import { Dish } from 'src/app/interfaces/dish';
 import { Menu } from 'src/app/interfaces/menu';
 import { map } from 'rxjs/operators';
-import { Restaurant } from 'src/app/interfaces/mobile/restaurant';
+import { MenuDish, Restaurant } from 'src/app/interfaces/mobile/restaurant';
 
 
 
@@ -16,6 +16,12 @@ import { Restaurant } from 'src/app/interfaces/mobile/restaurant';
   providedIn: 'root'
 })
 export class RestaurantService {
+
+
+  onSelectDish(orders: MenuDish) {
+    
+    
+  }
 
   selectedRestaurant?: Restaurant;
 
@@ -132,7 +138,7 @@ export class RestaurantService {
     }
     return this.httpClient.post(this.url, body).pipe(map((val: {
       allRestaurants: Restaurant[];
-      allMenus: Menu[];
+      allMenus: MenuDish[];
     }) => {
       console.log(val.allRestaurants);
       
@@ -279,6 +285,8 @@ export class RestaurantService {
     this.httpClient.post(this.url, body)
       .subscribe((response: any) => {
        // console.log(`${response}`)
+       console.log(response);
+       
       })
   }
 

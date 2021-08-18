@@ -1,6 +1,10 @@
+
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+
 import { MenuDish, Restaurant } from 'src/app/interfaces/mobile/restaurant';
+
+import { CartService } from 'src/app/services/cart/cart.service';
 import { RestaurantService } from 'src/app/services/restaurant/restaurant.service';
 
 @Component({
@@ -10,9 +14,12 @@ import { RestaurantService } from 'src/app/services/restaurant/restaurant.servic
 })
 export class RestaurantPage implements OnInit {
 
+  orders: MenuDish[];
+
 
   constructor(private route: ActivatedRoute,
-    private restaurantService: RestaurantService
+    private restaurantService: RestaurantService,
+    private cartService: CartService
   ) { }
 
   selectedRestaurant?: Restaurant;
@@ -22,8 +29,10 @@ export class RestaurantPage implements OnInit {
     //   console.log(params)
     // })
     this.selectedRestaurant = this.restaurantService.selectedRestaurant
-
+    this.orders = this.cartService.orders.getValue();
     this.restaurantService.getWeekMenuForSelectedRestaurant();
+    this.getMenusForDay();
+    this.cartService.orders.subscribe(orders => this.orders = orders)
   }
 
   currentDay = 1;
@@ -31,21 +40,33 @@ export class RestaurantPage implements OnInit {
   days = [1, 2, 3, 4, 5];
 
   daysName = ['MON', 'TUE', 'WEN', 'THU', 'FRI'];
-  
+
   daysNamesCro = ['Ponedjeljak', 'Utorak', 'Srijeda', 'Četvrtak', 'Petak']
 
-  filteredRestaurantMenus: MenuDish[][] = []
+  filteredRestaurantMenus: MenuDish[] = []
 
   changeDay(day: number) {
     this.currentDay = day;
     this.restaurantService.onDayChanged(day);
+    console.log(day);
 
     this.getMenusForDay();
   }
 
   getMenusForDay() {
     if (this.selectedRestaurant != null) {
-      this.filteredRestaurantMenus = this.selectedRestaurant.menu.filter(o => o.day == this.currentDay);
+      this.filteredRestaurantMenus = this.selectedRestaurant.menus[this.currentDay - 1].map(dish => {
+        dish.inCart = !!this.orders.find(o => o.day === dish.day && o.dishId ===dish.dishId);
+        return dish;
+      })
     }
   }
+
+  onSelect(dish: MenuDish) {
+    // console.log("napravi");
+    dish.inCart = this.cartService.toggleDishInCart(dish);
+    
+  }
+
+
 }
