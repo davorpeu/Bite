@@ -56,7 +56,7 @@ export class UserService {
       }
 
       //change for testing
-      this.router.navigate(['/'+ (true ? 'web' : 'mobile/tabs')+'/dashboard']), { replaceUrl: true }
+      this.router.navigate(['/'+ (!this.isMobile ? 'web' : 'mobile/tabs')+'/dashboard']), { replaceUrl: true }
     });
 
   }
