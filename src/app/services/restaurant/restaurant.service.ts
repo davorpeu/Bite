@@ -260,7 +260,7 @@ export class RestaurantService {
 
   onDayChanged(day: number) {
     this.currentDay = day
-    this.initRestaurantForCompanyUser()
+    
   }
 
   getWeekMenuForSelectedRestaurant() {
@@ -278,7 +278,7 @@ export class RestaurantService {
   }
     this.httpClient.post(this.url, body)
       .subscribe((response: any) => {
-        console.log(`${response}`)
+       // console.log(`${response}`)
       })
   }
 

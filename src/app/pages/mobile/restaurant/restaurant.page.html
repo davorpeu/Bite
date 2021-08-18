@@ -10,34 +10,26 @@
 <ion-content>
 
   <div class="days">
-    <div [ngClass]="{'day': true, 'active-day': day == currentDay}" *ngFor="let day of days" color="primary"
-      (click)="changeDay(day)">
-      <span>
-        <h2>{{daysName[day-1]}}</h2>
-      </span>
-    </div>
+    
   </div>
   <ion-grid>
     <ion-row>
-      <ion-col>
-        <ion-button>Mon</ion-button>
+      <ion-col size = "2" [ngClass]="{'day': true, 'active-day': day == currentDay}" *ngFor="let day of days" color="primary"
+      (click)="changeDay(day)">
+        <ion-button><h2>{{daysName[day-1]}}</h2>   
+    </ion-button>
       </ion-col>
-      <ion-col>
-        <ion-button>Thu</ion-button>
-
-      </ion-col>
-      <ion-col>
-        <ion-button>Wen</ion-button>
-
-      </ion-col>
-      <ion-col>
-        <ion-button>Thu</ion-button>
-
-      </ion-col>
-      <ion-col>
-        <ion-button>Fri</ion-button>
-
-      </ion-col>
+      
+    </ion-row>
+    <ion-row>
+      <ion-card class="ion-text-center ion-padding" [routerLink]="['/mobile/cart']" *ngFor="let menu of filteredRestaurantMenus"
+  [queryParams]='{id: menu.name}' [ngStyle]="{'background-image': restaurant.image}" (click)="onSelect(order)">
+    <ion-card-header>
+     
+      <ion-card-title class="ion-margin-top">{{menu.name}}</ion-card-title>
+      <ion-card-subtitle>Opis</ion-card-subtitle>
+    </ion-card-header>
+  </ion-card>
     </ion-row>
   </ion-grid>
 </ion-content>
