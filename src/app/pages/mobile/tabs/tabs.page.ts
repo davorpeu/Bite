@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MenuDish } from 'src/app/interfaces/mobile/restaurant';
+import { CartService } from 'src/app/services/cart/cart.service';
 
 @Component({
   selector: 'app-tabs',
@@ -7,9 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TabsPage implements OnInit {
 
-  constructor() { }
+  orders: MenuDish[];
+  constructor(private cartService: CartService) { }
 
   ngOnInit() {
+    this.orders = this.cartService.orders.getValue();
   }
 
 }

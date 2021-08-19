@@ -20,10 +20,10 @@ export class CartService {
 
 
 
-  toggleDishInCart(dish: MenuDish): boolean {
-    const x: MenuDish = Object.assign({}, dish);
+  toggleDishInCart(dishInMenu: MenuDish): boolean {
+    const x: MenuDish = Object.assign({}, dishInMenu);
     const orders = this.orders.getValue();
-    const index = orders.findIndex(o => o.dishId === dish.dishId && dish.day === o.day)
+    const index = orders.findIndex(o => o.dishId === dishInMenu.dishId && dishInMenu.day === o.day)
     if (index === -1) {
       delete x.inCart;
       orders.push(x);

@@ -5,6 +5,10 @@
 </ion-header>
 
 <ion-content>
-<app-dish-card *ngFor='let order of order' [name]='order.name' [orderDay]='days[order.day -1]'> </app-dish-card>
+  
+
+<!-- <app-dish-in-menu *ngFor='let dishInMenu of orders' [name]='dishInMenu.name' [orderDay]='days[dishInMenu.day -1]'> </app-dish-in-menu> -->
+<app-dish-in-menu *ngFor='let dishInMenu of orders' [dishInMenu]='dishInMenu' [orderDay]='days[dishInMenu.day -1]'> </app-dish-in-menu>
+<ion-button (click)="finishOrder()">Finish Order</ion-button>
 </ion-content>
-<ion-button></ion-button>
+

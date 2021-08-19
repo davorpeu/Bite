@@ -62,9 +62,9 @@ export class RestaurantPage implements OnInit {
     }
   }
 
-  onSelect(dishMenu: MenuDish) {
+  onSelect(dishInMenu: MenuDish) {
     // console.log("napravi");
-    dishMenu.inCart = this.cartService.toggleDishInCart(dishMenu);
+    dishInMenu.inCart = this.cartService.toggleDishInCart(dishInMenu);
     
   }
 

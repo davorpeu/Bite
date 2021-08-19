@@ -1,9 +1,9 @@
 <ion-tabs>
   <ion-tab-bar slot="bottom">
     <ion-tab-button tab="dashboard">
-      <ion-icon name="calendar"></ion-icon>
+      <ion-icon name="restaurant"></ion-icon>
       <ion-label>Bite</ion-label>
-      <ion-badge>6</ion-badge>
+      
     </ion-tab-button>
 
     <ion-tab-button tab="profile">
@@ -12,9 +12,9 @@
     </ion-tab-button>
 
     <ion-tab-button tab="cart">
-      <ion-icon name="map"></ion-icon>
+      <ion-icon name="cart"></ion-icon>
       <ion-label>Cart</ion-label>
-      <ion-badge>0</ion-badge>
+      <ion-badge>{{orders.length}}</ion-badge>
     </ion-tab-button>
   </ion-tab-bar>
 </ion-tabs>

@@ -10,63 +10,36 @@ import { map } from 'rxjs/operators';
 import { MenuDish, Restaurant } from 'src/app/interfaces/mobile/restaurant';
 
 
-
-
 @Injectable({
   providedIn: 'root'
 })
 export class RestaurantService {
 
-
   onSelectDish(orders: MenuDish) {
-    
-    
   }
 
   selectedRestaurant?: Restaurant;
 
- 
-    
   onSelectRestaurant(restaurant: Restaurant): void {
     this.selectedRestaurant = restaurant;
     console.log(this.selectedRestaurant);
     
   }
   
-
-
-  
-
-
-
-
-
-
-
-
-
-
   constructor(private httpClient: HttpClient, private userService: UserService, private router: Router) { }
 
-
-
-
-
   url: string = "https://jupitermobiletest.jupiter-software.com:30081/jupitermobilex/gen/api/food"
-
-
   _orders: BehaviorSubject<Order[]> = new BehaviorSubject<Order[]>(null);
+
   menus: BehaviorSubject<Menu[]> = new BehaviorSubject<Menu[]>(null);
+  
   dishes: BehaviorSubject<Dish[]> = new BehaviorSubject<Dish[]>(null);
+  
   allRestaurants: BehaviorSubject<Restaurant[]> = new BehaviorSubject<Restaurant[]>([]);
-
-
-
 
   currentDay = 1;
 
-
-
+  logiran: boolean;
 
   initRestaurantForCompanyUser() {
 
@@ -158,16 +131,12 @@ export class RestaurantService {
 
   }
 
-  logiran: boolean;
-
-
   addToMenu(clickedDish: Dish) {
 
 
 
     this.insertDishInMenu(this.currentDay, clickedDish.DishId)
   }
-
 
   removeFromMenu(clickedMenu: Menu) {
 
@@ -178,11 +147,6 @@ export class RestaurantService {
     this.removeDishFromMenu(this.currentDay, dishId)
 
   }
-
-
-
-
-
 
   addNewDish(dishName: string, soupStatus: number, saladStatus: number, breadStatus: number, dishDescription: string) {
 

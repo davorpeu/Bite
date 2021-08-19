@@ -17,6 +17,8 @@ export class CartPage implements OnInit {
   ngOnInit() {
     // sort od manjeg do većeg dana od 0 do 4
     this.cartService.orders.subscribe(orders => this.orders = orders.sort((a, b) => a.day - b.day));
+    
+    
   }
 
   async finishOrder() {
