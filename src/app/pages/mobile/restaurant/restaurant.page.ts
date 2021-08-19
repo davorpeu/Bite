@@ -43,7 +43,7 @@ export class RestaurantPage implements OnInit {
 
   daysNamesCro = ['Ponedjeljak', 'Utorak', 'Srijeda', 'Četvrtak', 'Petak']
 
-  filteredRestaurantMenus: MenuDish[] = []
+  menuDishes: MenuDish[] = []
 
   changeDay(day: number) {
     this.currentDay = day;
@@ -55,16 +55,16 @@ export class RestaurantPage implements OnInit {
 
   getMenusForDay() {
     if (this.selectedRestaurant != null) {
-      this.filteredRestaurantMenus = this.selectedRestaurant.menus[this.currentDay - 1].map(dish => {
+      this.menuDishes = this.selectedRestaurant.menus[this.currentDay - 1].map(dish => {
         dish.inCart = !!this.orders.find(o => o.day === dish.day && o.dishId ===dish.dishId);
         return dish;
       })
     }
   }
 
-  onSelect(dish: MenuDish) {
+  onSelect(dishMenu: MenuDish) {
     // console.log("napravi");
-    dish.inCart = this.cartService.toggleDishInCart(dish);
+    dishMenu.inCart = this.cartService.toggleDishInCart(dishMenu);
     
   }
 
