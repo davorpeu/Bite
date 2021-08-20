@@ -38,21 +38,37 @@ export class CartService {
   }
 
   finishOrder() {
-    const order = this.orders.getValue()[0];
+    const orders = this.orders.getValue()
 
     let body = {
       "db": "Food",
       "queries": [
-        {
-          "query": "spOrder",
-          "params": {
-            "userid": this.userService._user.getValue().userId,
-            "dishid": order.dishId,
-            "day": order.day
-          }
-        }
+       
       ]
     }
+
+    // let query =  {
+    //   "query": "spOrder",
+    //   "params": {
+    //     "userid": this.userService._user.getValue().userId,
+    //     "dishid": 0,
+    //     "day": 0
+    //   }
+    // }
+
+    body.queries.push(orders.map((o) => {
+      let query =  {
+        "query": "spOrder",
+        "params": {
+          "userid": this.userService._user.getValue().userId,
+          "dishid": 0,
+          "day": 0
+        }
+      }
+      query.params.dishid = o.dishId;
+      query.params.day = o.day;
+      return query
+    }))
     this.httpClient.post(this.url, body).toPromise();
     this.orders.next([]);
     this.storageService.removeData(this.userService._user.getValue().userId+'cart');

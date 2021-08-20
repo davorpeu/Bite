@@ -37,7 +37,7 @@ export class AppComponent {
       this.userService._user.next(user)
       if (this.userService._user){
         if(this.isMobile){
-          this.storageService.getData(this.userService._user.getValue().userId+'cart').then(orders => this.cartService.orders.next(orders.value || []))
+          this.storageService.getData(this.userService._user.getValue().userId+'cart').then(orders => this.cartService.orders.next(orders || []))
           this.router.navigate(['mobile/tabs/dashboard'], {replaceUrl: true})
         }
       }
