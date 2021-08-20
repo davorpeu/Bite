@@ -1,4 +1,5 @@
-<ion-card class="ion-text-center ion-padding" class="card" color="primary">
+<!-- [varijablja u ts-u]= "varijabla u ts-u ? = skraćeni if 'primary'" -->
+<ion-card class="ion-text-center ion-padding" class="card" [color]="dishSelected ? 'primary' : 'secondary'">
   <img src="assets/Meal/Meal-logo.png" />
 
   <ion-card-header>

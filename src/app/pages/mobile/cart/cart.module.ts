@@ -4,16 +4,17 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { CartPageRoutingModule } from './cart-routing.module';
 import { CartPage } from './cart.page';
-import { DishInMenuComponent } from 'src/app/Component/Menu/dish-in-menu/dish-in-menu.component';
 import { OrderComponent } from 'src/app/Component/Order/order/order.component';
+import { ComponentsModule } from 'src/app/Component/components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    CartPageRoutingModule
+    CartPageRoutingModule,
+    ComponentsModule,
   ],
-  declarations: [CartPage, DishInMenuComponent, OrderComponent]
+  declarations: [CartPage, OrderComponent]
 })
 export class CartPageModule { }

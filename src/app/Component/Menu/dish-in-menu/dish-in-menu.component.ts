@@ -11,6 +11,7 @@ export class DishInMenuComponent implements OnInit {
   constructor() { }
 
   @Input () dishInMenu: MenuDish;
+  @Input () dishSelected: boolean;
   ngOnInit() {}
 
 }

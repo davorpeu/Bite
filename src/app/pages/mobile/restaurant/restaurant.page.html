@@ -34,7 +34,7 @@
   </ion-card> -->
       <ion-col>
         <app-dish-in-menu class="ion-text-center ion-padding" *ngFor="let dishInMenu of menuDishes"
-          [dishInMenu]="dishInMenu"  (click)="onSelect(dishInMenu)"></app-dish-in-menu>
+          [dishInMenu]="dishInMenu"  (click)="onSelect(dishInMenu)" [dishSelected]="dishInMenu.inCart"></app-dish-in-menu>
       </ion-col>
 
     </ion-row>

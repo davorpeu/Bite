@@ -27,13 +27,14 @@ export class CartService {
     if (index === -1) {
       delete x.inCart;
       orders.push(x);
+      return true;
     }
     else {
       orders.splice(index, 1);
     }
     this.orders.next(orders);
     this.storageService.setData(this.userService._user.getValue().userId + 'cart', orders)
-    return true;
+    return false;
 
   }
 
@@ -56,7 +57,7 @@ export class CartService {
     //   }
     // }
 
-    body.queries.push(orders.map((o) => {
+    body.queries = orders.map((o) => {
       let query =  {
         "query": "spOrder",
         "params": {
@@ -68,7 +69,8 @@ export class CartService {
       query.params.dishid = o.dishId;
       query.params.day = o.day;
       return query
-    }))
+    })
+
     this.httpClient.post(this.url, body).toPromise();
     this.orders.next([]);
     this.storageService.removeData(this.userService._user.getValue().userId+'cart');
