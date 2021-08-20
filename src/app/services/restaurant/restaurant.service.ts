@@ -36,6 +36,8 @@ export class RestaurantService {
   dishes: BehaviorSubject<Dish[]> = new BehaviorSubject<Dish[]>(null);
   
   allRestaurants: BehaviorSubject<Restaurant[]> = new BehaviorSubject<Restaurant[]>([]);
+  
+  allUserOrders : BehaviorSubject<Order[]> = new BehaviorSubject(null)
 
   currentDay = 1;
 
@@ -113,7 +115,7 @@ export class RestaurantService {
               "action": "forUser",
               "userid": this.userService._user.getValue().userId
           },
-        tablename: 'allOrdersForUser'
+        tablename: 'allUserOrders'
       },
       ]
     }
@@ -122,7 +124,7 @@ export class RestaurantService {
       allMenus: MenuDish[];
       allUserOrders: Order[];
     }) => {
-      console.log(val.allRestaurants);
+     // console.log(val.allRestaurants);
       
       if (val.allRestaurants.length > 0) {
         const x = val.allRestaurants.map(r => ({
@@ -134,8 +136,9 @@ export class RestaurantService {
 
         // ovo hvata page kada želi dobiti podatke o svim restoranima
         this.allRestaurants.next(x);
+        
       }
-
+      this.allUserOrders.next(val.allUserOrders);
     }))
 
   }

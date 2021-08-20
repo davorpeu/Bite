@@ -11,6 +11,10 @@
   <ion-avatar  class="avatar">
     <img src="assets/profile/priestpls.jpg">
   </ion-avatar>
-
+<ion-list>
+  <ion-item *ngFor='let order of userOrders'>
+    {{order.dishName}}
+  </ion-item>
+</ion-list>
 
   </ion-content>

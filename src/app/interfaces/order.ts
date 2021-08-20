@@ -11,6 +11,7 @@ export interface Order {
     narucitelj: string,
     firma: string,
     firmaid: number,
-    naruciteljid: number
+    naruciteljid: number,
+    dishName: string
 
 }
