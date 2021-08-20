@@ -8,7 +8,7 @@
   
 
 <!-- <app-dish-in-menu *ngFor='let dishInMenu of orders' [name]='dishInMenu.name' [orderDay]='days[dishInMenu.day -1]'> </app-dish-in-menu> -->
-<app-dish-in-menu *ngFor='let dishInMenu of orders' [dishInMenu]='dishInMenu' [orderDay]='days[dishInMenu.day -1]'> </app-dish-in-menu>
-<ion-button (click)="finishOrder()">Finish Order</ion-button>
-</ion-content>
+<app-dish-in-menu *ngFor='let dishInMenu of orders' [dishInMenu]='dishInMenu'> </app-dish-in-menu>
 
+</ion-content>
+<ion-button (click)="finishOrder()">Finish Order</ion-button>

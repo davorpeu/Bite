@@ -13,7 +13,11 @@ export class TabsPage implements OnInit {
   constructor(private cartService: CartService) { }
 
   ngOnInit() {
-    this.orders = this.cartService.orders.getValue();
+    
+    this.cartNumber()
   }
 
+  cartNumber(){
+    this.orders = this.cartService.orders.getValue();
+  }
 }

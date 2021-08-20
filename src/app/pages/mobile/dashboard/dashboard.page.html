@@ -10,7 +10,7 @@
 <ion-content>
 
   <ion-card class="ion-text-center ion-padding" [routerLink]="['/mobile/restaurant']" *ngFor='let restaurant of filteredRestaurants'
-  [queryParams]='{id: restaurant.companyId}' [ngStyle]="{'background-image': restaurant.image, 'background-size': 'cover'}" (click)="onSelect(restaurant)">
+   [ngStyle]="{'background-image': restaurant.image, 'background-size': 'cover'}" (click)="onSelect(restaurant)">
     <ion-card-header>
      
       <ion-card-title class="ion-margin-top">{{restaurant.name}}</ion-card-title>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 import { MenuDish } from 'src/app/interfaces/mobile/restaurant';
 import { CartService } from 'src/app/services/cart/cart.service';
+import { TabsPage } from '../tabs/tabs.page';
 
 @Component({
   selector: 'app-cart',
@@ -12,7 +13,8 @@ export class CartPage implements OnInit {
   orders: MenuDish[];
 
   constructor(private cartService: CartService,
-    private toastController: ToastController) { }
+    private toastController: ToastController,
+    private tabsPage: TabsPage) { }
 
   ngOnInit() {
     // sort od manjeg do većeg dana od 0 do 4
@@ -25,6 +27,8 @@ export class CartPage implements OnInit {
     await this.cartService.finishOrder();
     this.presentToast();
     //dodaj button finishOrder
+    this.tabsPage.cartNumber();
+
   }
 
   async presentToast() {

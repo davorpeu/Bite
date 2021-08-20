@@ -106,12 +106,21 @@ export class RestaurantService {
             "action": "all"
           },
           tablename: 'allMenus'
-        }
+        },
+        {
+          "query": "spOrdersQuery",
+          "params": {
+              "action": "forUser",
+              "userid": this.userService._user.getValue().userId
+          },
+        tablename: 'allOrdersForUser'
+      },
       ]
     }
     return this.httpClient.post(this.url, body).pipe(map((val: {
       allRestaurants: Restaurant[];
       allMenus: MenuDish[];
+      allUserOrders: Order[];
     }) => {
       console.log(val.allRestaurants);
       

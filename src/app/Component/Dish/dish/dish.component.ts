@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Dish } from 'src/app/interfaces/dish';
-import { MenuDish } from 'src/app/interfaces/mobile/restaurant';
+
 
 @Component({
   selector: 'app-dish',
