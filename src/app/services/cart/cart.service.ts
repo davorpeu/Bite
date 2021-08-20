@@ -57,6 +57,13 @@ export class CartService {
     //   }
     // }
 
+    // this.orders.getValue.forEach(order => { apiCalls.push(this.apiService.callApi('url'))})
+    //{}
+    // ).toPromise
+    // await Promise.all(apiCalls);
+    //.this.orders.next([]);
+    //ovako treba izgledati promise
+
     body.queries = orders.map((o) => {
       let query =  {
         "query": "spOrder",
