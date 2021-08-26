@@ -16,7 +16,7 @@ export class UserService {
 
 
 
-  _user: BehaviorSubject<User> = new BehaviorSubject<User>(null);
+  currentUser: BehaviorSubject<User> = new BehaviorSubject<User>(null);
 
 
   constructor(private httpClient: HttpClient, private router: Router, private storageService: StorageService) { }
@@ -50,7 +50,7 @@ export class UserService {
     this.httpClient.post(this.url, body).subscribe((res: Array<User>) => {
       if (res.length > 0) {
 
-        this._user.next(res[0]);
+        this.currentUser.next(res[0]);
         this.storageService.setData("user",res[0]);
 
       }
@@ -114,16 +114,16 @@ export class UserService {
 
  async  logout() {
 
-    this._user.next(null);
+    this.currentUser.next(null);
    await this.storageService.removeData("user");
   }
 
   getUserId(){
-    return this._user.getValue().userId;
+    return this.currentUser.getValue().userId;
   }
 
   getUserCompany() {
-    return this._user.getValue().companyId;
+    return this.currentUser.getValue().companyId;
   }
 
 }

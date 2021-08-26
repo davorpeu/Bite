@@ -60,22 +60,24 @@
                     </ion-item>
 
                     <ion-button class="new-dish-button" (click)="newDish()">Save</ion-button>
+                   
+
                     <ion-button class="cancel-dish-button" (click)="cancelDish()">Cancel</ion-button>
 
                     <br>
 
 
 
-
-
+                   
 
                 </div>
             </ion-col>
             <ion-col>
-                <input hidden type="file" accept="image/*" capture="camera" id="fileInput" />
+                <input hidden type="file" accept="image/*" capture="camera" id="fileInput" (change)="onFileSelected($event)" />
                 <label for="fileInput" icon-only ion-button>
                     <div class="image-upload">ADD PHOTO</div>
                 </label>
+                
             </ion-col>
         </ion-row>
 

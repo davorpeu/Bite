@@ -15,12 +15,14 @@ export class DashboardPage implements OnInit {
   constructor(private resorauntService: RestaurantService) { }
 
   fetchedOrders: Array<Order> = []
+  filteredOrders: Array<Order> = []
+
   
   ngOnInit() {
     this.resorauntService._orders.subscribe((order: Array<Order>) => {
       this.fetchedOrders = order
      
-      
+      this.filteredOrders = this.fetchedOrders
       
     })
 
@@ -41,8 +43,8 @@ export class DashboardPage implements OnInit {
   }
 
   getOrdersForDay() {
-    if (this.fetchedOrders != null)
-      return this.fetchedOrders.filter(o => o.dan == this.daysNamesCro[this.currentDay - 1]);
+    if (this.filteredOrders != null)
+      return this.filteredOrders.filter(o => o.dan == this.daysNamesCro[this.currentDay - 1]);
       
       
       
@@ -50,6 +52,11 @@ export class DashboardPage implements OnInit {
     
   }
 
+  search(event) {
+    const query = event.target.value.toLowerCase();
+    this.filteredOrders = !query ? [...this.fetchedOrders] : this.fetchedOrders.filter(o => o.jelo.toLowerCase().includes(query));
+    // ... znači
+  }
 
 
 }

@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
+
 import { Router } from '@angular/router';
 import { MenuController, Platform } from '@ionic/angular';
 import { CartService } from './services/cart/cart.service';
-
 import { StorageService } from './services/storage/storage.service';
 import { UserService } from './services/user/user.service';
+
 
 @Component({
   selector: 'app-root',
@@ -18,9 +19,10 @@ export class AppComponent {
     private storageService: StorageService,
     private cartService: CartService,
     private router: Router,
+    // firestore: AngularFirestore,
     private platform: Platform) {
 
-    this.userService._user.subscribe(val => {
+    this.userService.currentUser.subscribe(val => {
       this.loggedIn = val != null;
     })
 
@@ -30,25 +32,32 @@ export class AppComponent {
   }
   isMobile: boolean;
 
+
+
+  // Initialize Firebase
+
+
+
   initializeApp() {
+
     this.userService.isMobile = this.platform.is('mobileweb') || this.platform.is('mobile')
     this.isMobile = this.userService.isMobile
-    this.storageService.getData('user').then(user =>{
-      this.userService._user.next(user)
-      if (this.userService._user){
-        if(this.isMobile){
-          this.storageService.getData(this.userService._user.getValue().userId+'cart').then(orders => this.cartService.orders.next(orders || []))
-          this.router.navigate(['mobile/tabs/dashboard'], {replaceUrl: true})
+    this.storageService.getData('user').then(user => {
+      this.userService.currentUser.next(user)
+      if (this.userService.currentUser) {
+        if (this.isMobile) {
+          this.storageService.getData(this.userService.currentUser.getValue().userId + 'cart').then(orders => this.cartService.orders.next(orders || []))
+          this.router.navigate(['mobile/tabs/dashboard'], { replaceUrl: true })
         }
       }
     });
-    
-  };
+
+  }
 
   async UserLoggedin() {
     let userLogged = await this.storageService.getData("user")
     if (userLogged != null) {
-      this.userService._user.next(userLogged);
+      this.userService.currentUser.next(userLogged);
 
       this.router.navigate(['/web/dashboard']), { replaceUrl: true }
     }
@@ -59,7 +68,7 @@ export class AppComponent {
   }
 
   loggedIn: boolean = false;
- 
+
 
 
   closeMenu() {

@@ -10,10 +10,17 @@ import { map } from 'rxjs/operators';
 import { MenuDish, Restaurant } from 'src/app/interfaces/mobile/restaurant';
 
 
+
+
+
+
+
 @Injectable({
   providedIn: 'root'
 })
 export class RestaurantService {
+
+  
 
   onSelectDish(orders: MenuDish) {
   }
@@ -23,26 +30,28 @@ export class RestaurantService {
   onSelectRestaurant(restaurant: Restaurant): void {
     this.selectedRestaurant = restaurant;
     console.log(this.selectedRestaurant);
-    
   }
-  
+
   constructor(private httpClient: HttpClient, private userService: UserService, private router: Router) { }
 
   url: string = "https://jupitermobiletest.jupiter-software.com:30081/jupitermobilex/gen/api/food"
   _orders: BehaviorSubject<Order[]> = new BehaviorSubject<Order[]>(null);
 
   menus: BehaviorSubject<Menu[]> = new BehaviorSubject<Menu[]>(null);
-  
+
   dishes: BehaviorSubject<Dish[]> = new BehaviorSubject<Dish[]>(null);
-  
+
   allRestaurants: BehaviorSubject<Restaurant[]> = new BehaviorSubject<Restaurant[]>([]);
-  
-  allUserOrders : BehaviorSubject<Order[]> = new BehaviorSubject(null)
+
+  allUserOrders: BehaviorSubject<Order[]> = new BehaviorSubject(null)
 
   currentDay = 1;
 
   logiran: boolean;
 
+  //imageStorage = firebase.default.storage().ref('dishImage/')
+
+  
   initRestaurantForCompanyUser() {
 
     let body =
@@ -112,11 +121,11 @@ export class RestaurantService {
         {
           "query": "spOrdersQuery",
           "params": {
-              "action": "forUser",
-              "userid": this.userService._user.getValue().userId
+            "action": "forUser",
+            "userid": this.userService.currentUser.getValue().userId
           },
-        tablename: 'allUserOrders'
-      },
+          tablename: 'allUserOrders'
+        },
       ]
     }
     return this.httpClient.post(this.url, body).pipe(map((val: {
@@ -124,8 +133,8 @@ export class RestaurantService {
       allMenus: MenuDish[];
       allUserOrders: Order[];
     }) => {
-     // console.log(val.allRestaurants);
-      
+      // console.log(val.allRestaurants);
+
       if (val.allRestaurants.length > 0) {
         const x = val.allRestaurants.map(r => ({
           companyId: r.companyId,
@@ -136,7 +145,7 @@ export class RestaurantService {
 
         // ovo hvata page kada želi dobiti podatke o svim restoranima
         this.allRestaurants.next(x);
-        
+
       }
       this.allUserOrders.next(val.allUserOrders);
     }))
@@ -160,7 +169,18 @@ export class RestaurantService {
 
   }
 
-  addNewDish(dishName: string, soupStatus: number, saladStatus: number, breadStatus: number, dishDescription: string) {
+  // addNewDishImage(dishImage: File) {
+  //   // this.imageData.append('image', dishImage, dishImage.name);
+  //   this.httpClient.post('http://bitedavorpeu.appspot.com/dishImage', dishImage,).subscribe(res => {
+  //     console.log(res)
+
+  //   })
+  // }
+  
+
+  
+
+  addNewDish(dishName: string, soupStatus: number, saladStatus: number, breadStatus: number, dishDescription: string,) {
 
     let dishBody = {
       "db": "Food",
@@ -182,11 +202,14 @@ export class RestaurantService {
     }
 
 
+
+
     this.httpClient.post(this.url, dishBody).subscribe((res: Array<Order>) => {
       if (res.length > 0) {
 
         this._orders.next(res);
       }
+
       this.router.navigate(['/web/menu']), { replaceUrl: true }
     });
 
@@ -204,7 +227,7 @@ export class RestaurantService {
             "action": "insert",
             "dishid": dishId,
             "day": Currentday,
-            "userid": this.userService._user.value.userId
+            "userid": this.userService.currentUser.value.userId
           }
         }
       ]
@@ -227,7 +250,7 @@ export class RestaurantService {
             "action": "delete",
             "dishid": dishid,
             "day": day,
-            "userid": this.userService._user.value.userId
+            "userid": this.userService.currentUser.value.userId
           }
         }
       ]
@@ -242,27 +265,27 @@ export class RestaurantService {
 
   onDayChanged(day: number) {
     this.currentDay = day
-    
+
   }
 
   getWeekMenuForSelectedRestaurant() {
     let body = {
       "db": "Food",
       "queries": [
-          {
-              "query": "spMenu",
-              "params": {
-                  "action": "week",
-                  "companyid": this.selectedRestaurant?.companyId
-              }
+        {
+          "query": "spMenu",
+          "params": {
+            "action": "week",
+            "companyid": this.selectedRestaurant?.companyId
           }
+        }
       ]
-  }
+    }
     this.httpClient.post(this.url, body)
       .subscribe((response: any) => {
-       // console.log(`${response}`)
-       console.log(response);
-       
+        // console.log(`${response}`)
+        console.log(response);
+
       })
   }
 

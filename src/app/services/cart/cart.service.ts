@@ -33,7 +33,7 @@ export class CartService {
       orders.splice(index, 1);
     }
     this.orders.next(orders);
-    this.storageService.setData(this.userService._user.getValue().userId + 'cart', orders)
+    this.storageService.setData(this.userService.currentUser.getValue().userId + 'cart', orders)
     return false;
 
   }
@@ -68,7 +68,7 @@ export class CartService {
       let query =  {
         "query": "spOrder",
         "params": {
-          "userid": this.userService._user.getValue().userId,
+          "userid": this.userService.currentUser.getValue().userId,
           "dishid": 0,
           "day": 0
         }
@@ -80,6 +80,6 @@ export class CartService {
 
     this.httpClient.post(this.url, body).toPromise();
     this.orders.next([]);
-    this.storageService.removeData(this.userService._user.getValue().userId+'cart');
+    this.storageService.removeData(this.userService.currentUser.getValue().userId+'cart');
   }
 }
